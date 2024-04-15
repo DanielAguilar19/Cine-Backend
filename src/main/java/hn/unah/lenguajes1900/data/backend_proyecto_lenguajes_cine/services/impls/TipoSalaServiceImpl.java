@@ -1,5 +1,7 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +17,40 @@ public class TipoSalaServiceImpl implements TipoSalaService{
 
     @Override
     public TipoSala crearTipoSala(TipoSala tipoSala) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearTipoSala'");
+        return this.tipoSalaRepository.save(tipoSala);
     }
 
     @Override
-    public TipoSala editarTipoSala(String tipoSala) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'editarTipoSala'");
+    public String editarTipoSala(long codigoTipoSala) {
+
+        if(!this.tipoSalaRepository.existsById(codigoTipoSala)){
+            this.tipoSalaRepository.findById(codigoTipoSala).get().setPrecio(
+                this.tipoSalaRepository.findById(codigoTipoSala).get().getPrecio()
+            );
+            this.tipoSalaRepository.findById(codigoTipoSala).get().setTipoSala(
+                this.tipoSalaRepository.findById(codigoTipoSala).get().getTipoSala()
+            );
+            return "Se han realizado los cambios.";
+        }
+        return "Ocurrió un problema: Posiblemente ha ingresado un tipo de sala que no existe...";
     }
 
     @Override
     public String eliminarTipoSalaPorNombre(String tipoSala) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarTipoSalaPorNombre'");
+        
+        List<TipoSala> tipoSalas = (List<TipoSala>) this.tipoSalaRepository.findAll();
+
+        for (TipoSala tipoSala2 : tipoSalas) {
+            if(tipoSala2.getTipoSala() == tipoSala){
+
+                //Falta agregar la lógica para eliminar las salas relacionadas con el tipo de sala.
+
+                long codigoTipoSala = tipoSala2.getCodigoTipoSala();
+                this.tipoSalaRepository.deleteById(codigoTipoSala);
+                return "El tipo de sala se ha eliminado correctamente.";
+            }
+        }
+        return "Ha ocurrido un error al eliminar el tipo de sala.";
     }
     
 }
