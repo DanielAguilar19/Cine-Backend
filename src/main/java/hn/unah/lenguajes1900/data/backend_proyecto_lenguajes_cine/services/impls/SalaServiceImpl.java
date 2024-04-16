@@ -1,14 +1,17 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.configurations.Configuration;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Sala;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.TipoSala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.SalaRepository;
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.TipoSalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.SalaService;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.TipoSalaService;
 
 //Arreglar la creación de la sala | Aun no se prueba la eliminación de la sala
 @Service
@@ -16,9 +19,6 @@ public class SalaServiceImpl implements SalaService{
 
     @Autowired
     private SalaRepository salaRepository;
-
-    @Autowired
-    private TipoSalaRepository tipoSalaRepository;
 
     @Autowired
     private AsientoServiceImpl asientoServiceImpl;
@@ -30,12 +30,13 @@ public class SalaServiceImpl implements SalaService{
     public Sala crearSala(Sala sala) {
         if(sala.getTipoSala().getTipoSala().matches("(vip|normal)")){
 
-            sala.setTipoSala(this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getTipoSala()));
+            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getTipoSala());
 
-            if(this.tipoSalaRepository.existsById(sala.getTipoSala().getCodigoTipoSala())){
+            if(tipoSala != null){
+                sala.setTipoSala(tipoSala);
                 Sala saladb = this.salaRepository.save(sala);
 
-                if(sala.getTipoSala().getTipoSala().equals("vip")){
+                if(saladb.getTipoSala().getTipoSala().equals("vip")){
                     for(int i=1; i<= Configuration.N_FILAS_SALA_VIP; i++){
                         for(int j=1; j<= Configuration.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
@@ -59,13 +60,14 @@ public class SalaServiceImpl implements SalaService{
                         }
                     }
                 }
-                System.out.println(saladb);
-                return saladb;
-
+                System.out.println("Los asientos se crearon correctamente");
+                return this.salaRepository.findById(saladb.getCodigoSala()).get();
             }
-
+            System.out.println("El tipoSala no existe en la db");
+            return null;
         }
-        return sala;
+        System.out.println("Nombre de tipoSala incorrecto.");
+        return null;
     }
 
     @Override
@@ -78,6 +80,22 @@ public class SalaServiceImpl implements SalaService{
             return "La sala se ha eliminado correctamente";
         }
         return "Ha ocurrido un error con la eliminación de la sala.";
+    }
+
+    public String eliminarSalasPorIdTipoSala(long codigoTipoSala){
+
+        List<Sala> salas = (List<Sala>) this.salaRepository.findAll();
+
+        if(!salas.isEmpty()){
+            for (Sala sala : salas) {
+                if(sala.getTipoSala().getCodigoTipoSala() == codigoTipoSala){
+    
+                    this.eliminarSalaPorId(sala.getCodigoSala());
+                }
+            }
+            return "Las salas se han eliminado correctamente.";
+        }
+        return "Ha ocurrido un error al intentar eliminar las salas.";
     }
     
 }

@@ -10,19 +10,32 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.TipoS
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.TipoSalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.TipoSalaService;
 
-//Todos estos metodos funcionan correctamente
 @Service
 public class TipoSalaServiceImpl implements TipoSalaService{
 
     @Autowired
     private TipoSalaRepository tipoSalaRepository;
 
+    @Autowired
+    private SalaServiceImpl salaServiceImpl;
+
     @Override
     public TipoSala crearTipoSala(TipoSala tipoSala) {
 
         if(tipoSala.getTipoSala().matches("(vip|normal)")){
-            return this.tipoSalaRepository.save(tipoSala);
+            TipoSala tsnormal = obtenerTipoSalaPorNombre("normal");
+            TipoSala tsvip = obtenerTipoSalaPorNombre("vip");
+
+            if(tsnormal == null && tipoSala.getTipoSala().equals("normal")){
+                System.out.println(tipoSala.getTipoSala());
+                return this.tipoSalaRepository.save(tipoSala);
+            }
+            if(tsvip == null && tipoSala.getTipoSala().equals("vip")){
+                System.out.println(tipoSala.getTipoSala());
+                return this.tipoSalaRepository.save(tipoSala);
+            }
         }
+        //System.out.println("no se envia el nombre que es");
         return null;
     }
 
@@ -34,12 +47,13 @@ public class TipoSalaServiceImpl implements TipoSalaService{
         if(tipoSalaOptional.isPresent()){
             TipoSala tsdb = tipoSalaOptional.get();
             tsdb.setPrecio(tipoSala.getPrecio());
-            tsdb.setTipoSala(tipoSala.getTipoSala());
+            //El tipo de sala no puede cambiar de tipo.
+            //tsdb.setTipoSala(tipoSala.getTipoSala());
             this.tipoSalaRepository.save(tsdb);
 
             return "Se han realizado los cambios.";
         }
-        return "Ocurrió un problema: Posiblemente ha ingresado un tipo de sala que no existe...";
+        return "Ocurrió un problema...";
     }
 
     @Override
@@ -61,15 +75,12 @@ public class TipoSalaServiceImpl implements TipoSalaService{
         
         List<TipoSala> tipoSalas = (List<TipoSala>) this.tipoSalaRepository.findAll();
 
-        for (TipoSala tipoSala2 : tipoSalas) {
-            if(tipoSala2.getTipoSala().equals(nombreTipoSala)){
+        for (TipoSala tipoSala : tipoSalas) {
+            if(tipoSala.getTipoSala().equals(nombreTipoSala)){
 
-                this.tipoSalaRepository.deleteById(tipoSala2.getCodigoTipoSala());
+                this.salaServiceImpl.eliminarSalasPorIdTipoSala(tipoSala.getCodigoTipoSala());
+                this.tipoSalaRepository.deleteById(tipoSala.getCodigoTipoSala());
 
-                //Optional<TipoSala> tipoSala = this.tipoSalaRepository.findById(tipoSala2.getCodigoTipoSala());
-                //Falta agregar la lógica para eliminar las salas relacionadas con el tipo de sala.
-
-                //this.tipoSalaRepository.deleteById(tipoSala.get().getCodigoTipoSala());
                 return "El tipo de sala se ha eliminado correctamente.";
             }
         }

@@ -50,8 +50,13 @@ public class AsientoServiceImpl implements AsientoService{
     public String eliminarAsientos(long codigoSala) {
 
         if(this.salaRepository.existsById(codigoSala)){
-            for (Asiento asiento : findAllByCodigoSala(codigoSala)) {
-                this.asientoRepository.delete(asiento);
+            List<Asiento> asientos = (List<Asiento>) this.asientoRepository.findAll();
+
+            for (Asiento asiento : asientos) {
+                if(asiento.getSala().getCodigoSala() == codigoSala){
+
+                    this.asientoRepository.delete(asiento);
+                }
             }
             return "Asientos eliminados.";
         }

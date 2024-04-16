@@ -7,4 +7,6 @@ public interface SalaService {
     public Sala crearSala(Sala sala);
 
     public String eliminarSalaPorId(long codigoSala);
+    
+    public String eliminarSalasPorIdTipoSala(long codigoTipoSala);
 }

@@ -1,4 +1,4 @@
-package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.Controllers;
+package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("api/usuario")
 public class UsuarioController {
- 
+
 @Autowired
 private UsuarioServiceImpl usuarioServiceImpl;
 
