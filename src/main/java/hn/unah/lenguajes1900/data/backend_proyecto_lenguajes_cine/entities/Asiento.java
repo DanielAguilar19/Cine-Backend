@@ -27,7 +27,7 @@ public class Asiento {
     @JoinColumn(name = "codigosala", referencedColumnName = "codigosala")
     private Sala sala;
     
-    private boolean disponible;
+    private int disponible;
 
     private int fila;
 
