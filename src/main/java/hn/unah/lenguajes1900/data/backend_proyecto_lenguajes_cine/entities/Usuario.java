@@ -13,18 +13,20 @@ import lombok.Data;
 @Table(name = "usuarios")
 @Data
 public class Usuario {
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigousuario")
-    private long codigoUsuario;
-
+    private int codigoUsuario; 
+     
     private String correo;
-
+   
     private String contrasenia;
-
-    private String rol;
+   
+    private String rol; 
 
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+
 }

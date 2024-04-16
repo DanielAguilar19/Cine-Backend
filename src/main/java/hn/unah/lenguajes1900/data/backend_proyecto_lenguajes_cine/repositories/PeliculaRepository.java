@@ -7,5 +7,10 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Pelic
 
 @Repository
 public interface PeliculaRepository extends CrudRepository<Pelicula, Long>{
+
+    public String deleteByTitulo(String titulo);
+
+    
+    boolean existsByTitulo(String titulo);
     
 }

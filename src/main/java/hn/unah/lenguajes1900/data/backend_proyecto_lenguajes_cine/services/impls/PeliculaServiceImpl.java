@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Pelicula;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.PeliculaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.PeliculaService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PeliculaServiceImpl implements PeliculaService{
@@ -17,20 +18,24 @@ public class PeliculaServiceImpl implements PeliculaService{
 
     @Override
     public Pelicula crearPelicula(Pelicula pelicula) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearPelicula'");
+        return this.peliculaRepository.save(pelicula);
     }
 
     @Override
     public List<Pelicula> obtenerPeliculas() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerPeliculas'");
+        return (List<Pelicula>) this.peliculaRepository.findAll();
     }
 
-    @Override
+    @Transactional
     public String eliminarPeliculaPorNombre(String titulo) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarPeliculaPorNombre'");
+        if (this.peliculaRepository.existsByTitulo(titulo)) {
+            this.peliculaRepository.deleteByTitulo(titulo);
+            return "Película eliminada";
+        } else {
+            return "No existe la película";
+        }
     }
     
 }
