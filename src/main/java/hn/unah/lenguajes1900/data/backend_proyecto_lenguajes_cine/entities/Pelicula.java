@@ -26,6 +26,5 @@ public class Pelicula {
 
     private LocalTime duracion;
 
-    @OneToMany(mappedBy = "pelicula")
-    private List<Evento> eventos;
+
 }
