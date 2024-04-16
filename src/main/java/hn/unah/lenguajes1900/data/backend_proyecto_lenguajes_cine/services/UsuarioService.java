@@ -10,4 +10,6 @@ public interface UsuarioService {
 
     public String eliminarUsuarioPorIdCliente(long codigoCliente);
 
+    public Usuario loginUsuario(Usuario usuario);
+
 }

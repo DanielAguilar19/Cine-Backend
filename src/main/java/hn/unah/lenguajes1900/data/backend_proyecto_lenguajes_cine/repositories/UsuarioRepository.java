@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Usuario;
 
 @Repository
-public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
+public interface UsuarioRepository extends CrudRepository<Usuario, Integer>{
     
+    Usuario findByCorreoAndContrasenia(String correo, String contrasenia);
 }

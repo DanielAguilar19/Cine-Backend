@@ -31,4 +31,16 @@ public class UsuarioServiceImpl implements UsuarioService{
         throw new UnsupportedOperationException("Unimplemented method 'eliminarUsuarioPorIdCliente'");
     }
     
-}
+
+    @Override
+    public Usuario loginUsuario(Usuario usuario) {
+       
+        Usuario usuarioEncontrado = usuarioRepository.findByCorreoAndContrasenia(usuario.getCorreo(), usuario.getContrasenia());
+        if (usuarioEncontrado != null) {
+            return usuarioEncontrado;
+        } 
+        return null;
+    }
+
+    }
+

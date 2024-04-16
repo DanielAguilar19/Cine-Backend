@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Cliente;
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Usuario;
+
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.ClienteRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.ClienteService;
 
@@ -19,31 +19,55 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public Cliente crearCliente(Cliente cliente) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crearCliente'");
+        return this.clienteRepository.save(cliente);
     }
 
     @Override
-    public Cliente obtenerClientePorUsuario(Usuario Usuario) {
+    public Cliente obtenerClientePorUsuario(Cliente cliente) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerClientePorUsuario'");
+        return null;
     }
+
 
     @Override
     public List<Cliente> obtenerClientes() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerClientes'");
+       return (List<Cliente>)this.clienteRepository.findAll();
     }
 
-    @Override
-    public Cliente editarCliente(long codigoCliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'editarCliente'");
-    }
-
+    
     @Override
     public String eliminarCliente(long codigoCliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarCliente'");
+
+        if (this.clienteRepository.existsById(codigoCliente)) {
+            this.clienteRepository.deleteById(codigoCliente);
+            return "Cliente eliminado";
+        } else {
+            return "No existe el cliente";
+        }
+    }
+       
+
+    @Override
+    public Cliente editarCliente(long codigoCliente, Cliente cliente) {
+       
+        Cliente clienteActualizar = this.clienteRepository.findById(codigoCliente).get();
+
+        if(null != clienteActualizar){
+            clienteActualizar.setNombreCompleto(cliente.getNombreCompleto());
+            clienteActualizar.setClienteFrecuente(cliente.isClienteFrecuente());
+            clienteActualizar.setFechaNacimiento(cliente.getFechaNacimiento());
+            clienteActualizar.setTelefono(cliente.getTelefono());
+            clienteActualizar.setUsuario(cliente.getUsuario());
+
+            this.clienteRepository.save(clienteActualizar);
+        }
+     
+
+        return clienteActualizar;
+    }
+
     }
     
-}
+    
+

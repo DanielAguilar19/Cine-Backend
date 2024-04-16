@@ -7,5 +7,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Clien
 
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
+
+    
     
 }

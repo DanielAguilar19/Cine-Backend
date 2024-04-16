@@ -1,5 +1,7 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,11 @@ public class Usuario {
    
     private String rol; 
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario")
     private Cliente cliente;
+
+
+
 
 }
