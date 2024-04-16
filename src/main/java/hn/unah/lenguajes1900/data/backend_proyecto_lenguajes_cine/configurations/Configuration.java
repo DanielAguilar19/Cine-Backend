@@ -2,7 +2,8 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.configuration
 
 public class Configuration {
 
-    public static final long ASIENTOS_SALA_VIP = 50;
-	public static final long ASIENTOS_SALA_NORMAL = 100;
+    public static final int N_ASIENTOS_FILA = 10;
+    public static final int N_FILAS_SALA_VIP = 5;
+	public static final int N_FILAS_SALA_NORMAL = 10;
     
 }
