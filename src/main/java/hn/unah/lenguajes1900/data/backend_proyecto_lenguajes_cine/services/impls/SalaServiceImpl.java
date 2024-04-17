@@ -1,7 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +9,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Sala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.TipoSala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.SalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.SalaService;
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.TipoSalaService;
 
-//Arreglar la creación de la sala | Aun no se prueba la eliminación de la sala
 @Service
 public class SalaServiceImpl implements SalaService{
 
@@ -81,21 +77,4 @@ public class SalaServiceImpl implements SalaService{
         }
         return "Ha ocurrido un error con la eliminación de la sala.";
     }
-
-    public String eliminarSalasPorIdTipoSala(long codigoTipoSala){
-
-        List<Sala> salas = (List<Sala>) this.salaRepository.findAll();
-
-        if(!salas.isEmpty()){
-            for (Sala sala : salas) {
-                if(sala.getTipoSala().getCodigoTipoSala() == codigoTipoSala){
-    
-                    this.eliminarSalaPorId(sala.getCodigoSala());
-                }
-            }
-            return "Las salas se han eliminado correctamente.";
-        }
-        return "Ha ocurrido un error al intentar eliminar las salas.";
-    }
-    
 }

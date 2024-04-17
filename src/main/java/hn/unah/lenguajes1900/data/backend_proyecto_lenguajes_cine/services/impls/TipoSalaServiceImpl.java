@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Sala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.TipoSala;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.SalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.TipoSalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.TipoSalaService;
 
@@ -17,7 +19,10 @@ public class TipoSalaServiceImpl implements TipoSalaService{
     private TipoSalaRepository tipoSalaRepository;
 
     @Autowired
-    private SalaServiceImpl salaServiceImpl;
+    private SalaRepository salaRepository;
+
+    @Autowired
+    private AsientoServiceImpl asientoServiceImpl;
 
     @Override
     public TipoSala crearTipoSala(TipoSala tipoSala) {
@@ -44,7 +49,7 @@ public class TipoSalaServiceImpl implements TipoSalaService{
 
         Optional<TipoSala> tipoSalaOptional = this.tipoSalaRepository.findById(tipoSala.getCodigoTipoSala());
 
-        if(tipoSalaOptional.isPresent()){
+        if(tipoSalaOptional.isPresent() && tipoSala.getTipoSala().equals(tipoSalaOptional.get().getTipoSala())){
             TipoSala tsdb = tipoSalaOptional.get();
             tsdb.setPrecio(tipoSala.getPrecio());
             //El tipo de sala no puede cambiar de tipo.
@@ -70,21 +75,34 @@ public class TipoSalaServiceImpl implements TipoSalaService{
         return null;
     }
 
-    @Override
     public String eliminarTipoSalaPorNombre(String nombreTipoSala) {
         
         List<TipoSala> tipoSalas = (List<TipoSala>) this.tipoSalaRepository.findAll();
 
-        for (TipoSala tipoSala : tipoSalas) {
-            if(tipoSala.getTipoSala().equals(nombreTipoSala)){
+        if(!tipoSalas.isEmpty()){
+            for (TipoSala tipoSala : tipoSalas) {
+                if(tipoSala.getTipoSala().equals(nombreTipoSala)){
 
-                this.salaServiceImpl.eliminarSalasPorIdTipoSala(tipoSala.getCodigoTipoSala());
+                    //this.salaServiceImpl.eliminarSalasPorIdTipoSala(tipoSala.getCodigoTipoSala());
+                    long codigoTipoSala = tipoSala.getCodigoTipoSala();
+                    List<Sala> salas = (List<Sala>) this.salaRepository.findAll();
+
+                    if(!salas.isEmpty()){
+                        for (Sala sala : salas) {
+                            if(sala.getTipoSala().getCodigoTipoSala() == codigoTipoSala){
+
+                                long codigoSala = sala.getCodigoSala();
+                                this.asientoServiceImpl.eliminarAsientos(codigoSala);
+                                this.salaRepository.deleteById(codigoSala);
+                            }
+                        }
+                    }
                 this.tipoSalaRepository.deleteById(tipoSala.getCodigoTipoSala());
-
-                return "El tipo de sala se ha eliminado correctamente.";
+                }
             }
+        return "El tipo de sala se ha eliminado correctamente";
         }
-        return "Ha ocurrido un error al eliminar el tipo de sala.";
+    return "Ha ocurrido un error al eliminar el tipo de sala.";
     }
 
 }
