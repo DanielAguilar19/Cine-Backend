@@ -23,8 +23,7 @@ public class TipoSala {
     @Column(name = "codigotiposala")
     private long codigoTipoSala;
 
-    @Column(name = "tiposala")
-    private String tipoSala;
+    private String descripcion;
     
     private double precio;
 

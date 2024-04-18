@@ -34,7 +34,7 @@ public class Evento {
     @JoinColumn(name = "codigosala", referencedColumnName = "codigosala")
     private Sala sala;
 
-    private boolean disponible;
+    private int disponible;
 
     @Column(name = "horainicio")
     private LocalTime horaInicio;

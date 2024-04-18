@@ -50,7 +50,6 @@ public class ClienteServiceImpl implements ClienteService{
         }
     }
 
-
     @Override
     public Cliente editarCliente(long codigoCliente, Cliente cliente) {
 
@@ -59,19 +58,20 @@ public class ClienteServiceImpl implements ClienteService{
         if(null != clienteActualizar){
             
             Validation validator = new Validation();
-            if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono())){
+            if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono()) && validator.validarCorreo(cliente.getCorreo())){
 
                 clienteActualizar.setNombreCompleto(cliente.getNombreCompleto());
                 clienteActualizar.setClienteFrecuente(cliente.getClienteFrecuente());
                 clienteActualizar.setFechaNacimiento(cliente.getFechaNacimiento());
+                clienteActualizar.setCorreo(cliente.getCorreo());
+                clienteActualizar.setContrasenia(cliente.getContrasenia());
                 clienteActualizar.setTelefono(cliente.getTelefono());
-                clienteActualizar.setUsuario(cliente.getUsuario());
 
                 this.clienteRepository.save(clienteActualizar);
             }
             return clienteActualizar;
         }
-        return null;  
+        return null;
     }
 }
     

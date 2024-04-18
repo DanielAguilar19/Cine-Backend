@@ -31,6 +31,7 @@ public class Asiento {
     
     private int disponible;
 
+    @Column(name = "numeroasiento")
     private String numeroAsiento;
 
     @OneToMany(mappedBy = "asiento")

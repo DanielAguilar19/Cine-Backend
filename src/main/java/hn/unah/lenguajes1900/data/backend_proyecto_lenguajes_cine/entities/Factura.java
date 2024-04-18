@@ -1,9 +1,9 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,35 +15,37 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity
-@Table(name = "compras")
-@Data
-public class Compra {
+import java.util.List;
 
+@Entity
+@Table(name = "facturas")
+@Data
+public class Factura {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigocompra")
-    private long codigoCompra;
+    @Column(name = "codigofactura")
+    private Long codigoFactura; 
 
     @ManyToOne
     @JoinColumn(name = "codigocliente", referencedColumnName = "codigocliente")
-    private Cliente cliente;
+    private Cliente cliente; 
 
     @Column(name = "numerotarjeta")
-    private String numeroTarjeta;
-
-    @Column(name = "cantidadboletos")
-    private int cantidadBoletos;
+    private String numeroTarjeta; 
 
     @Column(name = "fechacompra")
-    private LocalDate fechaCompra;
+    private LocalDate fechaCompra; 
 
-    private double descuento;
+    private Double descuento; 
 
     @Column(name = "totalcompra")
-    private double totalCompra;
+    private Double totalCompra; 
 
-    @OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
-    private List<Boleto> boletos;
-    
+    @OneToMany(mappedBy = "factura")
+    private List<DetalleFactura> detallefactura;
+
+
+
+
 }

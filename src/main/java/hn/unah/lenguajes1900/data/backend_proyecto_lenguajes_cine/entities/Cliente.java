@@ -1,19 +1,18 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -36,11 +35,11 @@ public class Cliente {
 
     private String telefono;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "codigousuario", referencedColumnName = "codigousuario")
-    private Usuario usuario;
+    private String correo; 
+
+    private String contrasenia; 
 
     @OneToMany(mappedBy = "cliente")
-    private List<Compra> compras;
+    private List<Factura> factura;
     
 }

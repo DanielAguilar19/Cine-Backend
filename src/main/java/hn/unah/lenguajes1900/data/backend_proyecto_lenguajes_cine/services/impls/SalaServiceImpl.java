@@ -27,16 +27,16 @@ public class SalaServiceImpl implements SalaService{
 
     @Override
     public Sala crearSala(Sala sala) {
-        if(sala.getTipoSala().getTipoSala().matches("(vip|normal)")){
+        if(sala.getTipoSala().getDescripcion().matches("(vip|normal)")){
 
-            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getTipoSala());
+            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getDescripcion());
 
             if(tipoSala != null){
                 sala.setTipoSala(tipoSala);
                 Sala saladb = this.salaRepository.save(sala);
                 String[] filaArray = {"A","B","C","D","E","F","G","H","I"};
 
-                if(saladb.getTipoSala().getTipoSala().equals("vip")){
+                if(saladb.getTipoSala().getDescripcion().equals("vip")){
 
                     for(int i=0; i< Validation.N_FILAS_SALA_VIP; i++){
                         String fila = filaArray[i];

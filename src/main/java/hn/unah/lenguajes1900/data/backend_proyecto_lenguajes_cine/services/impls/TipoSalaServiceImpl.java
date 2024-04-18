@@ -27,16 +27,16 @@ public class TipoSalaServiceImpl implements TipoSalaService{
     @Override
     public TipoSala crearTipoSala(TipoSala tipoSala) {
 
-        if(tipoSala.getTipoSala().matches("(vip|normal)")){
+        if(tipoSala.getDescripcion().matches("(vip|normal)")){
             TipoSala tsnormal = obtenerTipoSalaPorNombre("normal");
             TipoSala tsvip = obtenerTipoSalaPorNombre("vip");
 
-            if(tsnormal == null && tipoSala.getTipoSala().equals("normal")){
-                System.out.println(tipoSala.getTipoSala());
+            if(tsnormal == null && tipoSala.getDescripcion().equals("normal")){
+                System.out.println(tipoSala.getDescripcion());
                 return this.tipoSalaRepository.save(tipoSala);
             }
-            if(tsvip == null && tipoSala.getTipoSala().equals("vip")){
-                System.out.println(tipoSala.getTipoSala());
+            if(tsvip == null && tipoSala.getDescripcion().equals("vip")){
+                System.out.println(tipoSala.getDescripcion());
                 return this.tipoSalaRepository.save(tipoSala);
             }
         }
@@ -49,7 +49,7 @@ public class TipoSalaServiceImpl implements TipoSalaService{
 
         Optional<TipoSala> tipoSalaOptional = this.tipoSalaRepository.findById(codigoTipoSala);
 
-        if(tipoSalaOptional.isPresent() && tipoSala.getTipoSala().equals(tipoSalaOptional.get().getTipoSala())){
+        if(tipoSalaOptional.isPresent() && tipoSala.getDescripcion().equals(tipoSalaOptional.get().getDescripcion())){
             TipoSala tsdb = tipoSalaOptional.get();
             tsdb.setPrecio(tipoSala.getPrecio());
             //El tipo de sala no puede cambiar de tipo.
@@ -67,7 +67,7 @@ public class TipoSalaServiceImpl implements TipoSalaService{
         List<TipoSala> tipoSalas = (List<TipoSala>) this.tipoSalaRepository.findAll();
 
         for (TipoSala tipoSala2 : tipoSalas) {
-            if(tipoSala2.getTipoSala().equals(nombreTipoSala)){
+            if(tipoSala2.getDescripcion().equals(nombreTipoSala)){
 
                 return tipoSala2;                
             }
@@ -81,7 +81,7 @@ public class TipoSalaServiceImpl implements TipoSalaService{
 
         if(!tipoSalas.isEmpty()){
             for (TipoSala tipoSala : tipoSalas) {
-                if(tipoSala.getTipoSala().equals(nombreTipoSala)){
+                if(tipoSala.getDescripcion().equals(nombreTipoSala)){
 
                     //this.salaServiceImpl.eliminarSalasPorIdTipoSala(tipoSala.getCodigoTipoSala());
                     long codigoTipoSala = tipoSala.getCodigoTipoSala();

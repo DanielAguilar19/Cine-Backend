@@ -106,8 +106,8 @@ public class EventoServiceImpl implements EventoService{
         if(eventoOptional.isPresent()){
 
             Evento eventoActualizado = eventoOptional.get();
-            //modificar
-            eventoActualizado.setDisponible(evento.isDisponible());
+            
+            eventoActualizado.setDisponible(evento.getDisponible());
             eventoActualizado.setFechaEvento(evento.getFechaEvento());
             eventoActualizado.setHoraInicio(evento.getHoraInicio());
             eventoActualizado.setIdioma(evento.getIdioma());
