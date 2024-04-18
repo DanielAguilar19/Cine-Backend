@@ -33,9 +33,8 @@ public class Asiento {
     
     private int disponible;
 
-    private int fila;
-
-    private int columna;
+    @Column(name = "numeroasiento")
+    private String numeroAsiento;
 
     @OneToMany(mappedBy = "asiento")
     private List<Boleto> boletos;

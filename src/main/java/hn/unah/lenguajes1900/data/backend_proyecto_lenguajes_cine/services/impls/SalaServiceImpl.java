@@ -24,22 +24,22 @@ public class SalaServiceImpl implements SalaService{
 
     @Override
     public Sala crearSala(Sala sala) {
-        if(sala.getTipoSala().getTipoSala().matches("(vip|normal)")){
+        if(sala.getTipoSala().getDescripcion().matches("(vip|normal)")){
 
-            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getTipoSala());
+            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getDescripcion());
 
             if(tipoSala != null){
                 sala.setTipoSala(tipoSala);
                 Sala saladb = this.salaRepository.save(sala);
 
-                if(saladb.getTipoSala().getTipoSala().equals("vip")){
+                if(saladb.getTipoSala().getDescripcion().equals("vip")){
                     for(int i=1; i<= Configuration.N_FILAS_SALA_VIP; i++){
                         for(int j=1; j<= Configuration.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
                             asiento.setDisponible(0);
-                            asiento.setFila(i);
-                            asiento.setColumna(j);
+                            /*asiento.setFila(i);
+                            asiento.setColumna(j);*/
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
                     }
@@ -50,8 +50,8 @@ public class SalaServiceImpl implements SalaService{
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
                             asiento.setDisponible(0);
-                            asiento.setFila(i);
-                            asiento.setColumna(j);
+                           /*  asiento.setFila(i);
+                            asiento.setColumna(j);*/
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
                     }

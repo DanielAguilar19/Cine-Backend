@@ -55,10 +55,10 @@ public class ClienteServiceImpl implements ClienteService{
 
         if(null != clienteActualizar){
             clienteActualizar.setNombreCompleto(cliente.getNombreCompleto());
-            clienteActualizar.setClienteFrecuente(cliente.isClienteFrecuente());
+            /*clienteActualizar.setClienteFrecuente(cliente.isClienteFrecuente());*/
             clienteActualizar.setFechaNacimiento(cliente.getFechaNacimiento());
             clienteActualizar.setTelefono(cliente.getTelefono());
-            clienteActualizar.setUsuario(cliente.getUsuario());
+      
 
             this.clienteRepository.save(clienteActualizar);
         }
