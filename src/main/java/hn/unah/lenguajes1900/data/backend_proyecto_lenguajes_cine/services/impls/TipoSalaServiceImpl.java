@@ -45,9 +45,9 @@ public class TipoSalaServiceImpl implements TipoSalaService{
     }
 
     @Override
-    public String editarTipoSala(TipoSala tipoSala) {
+    public String editarTipoSala(long codigoTipoSala, TipoSala tipoSala) {
 
-        Optional<TipoSala> tipoSalaOptional = this.tipoSalaRepository.findById(tipoSala.getCodigoTipoSala());
+        Optional<TipoSala> tipoSalaOptional = this.tipoSalaRepository.findById(codigoTipoSala);
 
         if(tipoSalaOptional.isPresent() && tipoSala.getTipoSala().equals(tipoSalaOptional.get().getTipoSala())){
             TipoSala tsdb = tipoSalaOptional.get();

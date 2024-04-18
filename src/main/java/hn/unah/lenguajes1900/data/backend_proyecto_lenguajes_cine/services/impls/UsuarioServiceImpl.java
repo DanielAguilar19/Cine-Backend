@@ -34,7 +34,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public Usuario loginUsuario(Usuario usuario) {
-       
         Usuario usuarioEncontrado = usuarioRepository.findByCorreoAndContrasenia(usuario.getCorreo(), usuario.getContrasenia());
         if (usuarioEncontrado != null) {
             return usuarioEncontrado;

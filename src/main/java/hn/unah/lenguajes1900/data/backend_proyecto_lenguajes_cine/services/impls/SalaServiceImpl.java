@@ -1,9 +1,12 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.configurations.Configuration;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.Validations.Validation;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Sala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.TipoSala;
@@ -31,27 +34,30 @@ public class SalaServiceImpl implements SalaService{
             if(tipoSala != null){
                 sala.setTipoSala(tipoSala);
                 Sala saladb = this.salaRepository.save(sala);
+                String[] filaArray = {"A","B","C","D","E","F","G","H","I"};
 
                 if(saladb.getTipoSala().getTipoSala().equals("vip")){
-                    for(int i=1; i<= Configuration.N_FILAS_SALA_VIP; i++){
-                        for(int j=1; j<= Configuration.N_ASIENTOS_FILA; j++){
+
+                    for(int i=0; i< Validation.N_FILAS_SALA_VIP; i++){
+                        String fila = filaArray[i];
+                        for(int j=0; j< Validation.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
                             asiento.setDisponible(0);
-                            asiento.setFila(i);
-                            asiento.setColumna(j);
+                            asiento.setNumeroAsiento(String.format("%s", fila+(j+1)));
+                            System.out.println(asiento.getNumeroAsiento());
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
                     }
 
                 }else{
-                    for(int i=1; i<= Configuration.N_FILAS_SALA_NORMAL; i++){
-                        for(int j=1; j<= Configuration.N_ASIENTOS_FILA; j++){
+                    for(int i=0; i< Validation.N_FILAS_SALA_NORMAL; i++){
+                        String fila = filaArray[i];
+                        for(int j=0; j< Validation.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
                             asiento.setDisponible(0);
-                            asiento.setFila(i);
-                            asiento.setColumna(j);
+                            asiento.setNumeroAsiento(String.format("%s", fila+(j+1)));
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
                     }

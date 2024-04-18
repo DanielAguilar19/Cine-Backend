@@ -29,7 +29,7 @@ public class Cliente {
     private String nombreCompleto;
 
     @Column(name = "clientefrecuente")
-    private boolean clienteFrecuente;
+    private int clienteFrecuente;
 
     @Column(name = "fechanacimiento")
     private LocalDate fechaNacimiento;

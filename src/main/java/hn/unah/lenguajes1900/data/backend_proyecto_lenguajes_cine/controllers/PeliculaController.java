@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
-
 @RestController
 @RequestMapping("/api/pelicula")
 public class PeliculaController {
@@ -26,19 +23,14 @@ public class PeliculaController {
     private PeliculaServiceImpl peliculaServiceImpl;
 
     @PostMapping("/crear")
-    public Pelicula crearPelicula(@RequestBody Pelicula pelicula) {
-        //TODO: process POST request
-        
+    public Pelicula crearPelicula(@RequestBody Pelicula pelicula) {        
         return this.peliculaServiceImpl.crearPelicula(pelicula);
     }
     
-    
-
     @GetMapping("/obtener")
     public List<Pelicula> obtenerPeliculas() {
         return this.peliculaServiceImpl.obtenerPeliculas();
     }
-    
 
     @DeleteMapping("/eliminar")
     public String eliminarPeliculaByTitulo(@RequestParam String titulo) {

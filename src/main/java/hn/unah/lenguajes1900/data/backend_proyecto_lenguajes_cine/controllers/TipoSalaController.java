@@ -2,6 +2,7 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,9 +26,9 @@ public class TipoSalaController {
         return this.tipoSalaServiceImpl.crearTipoSala(tipoSala);
     }
 
-    @PutMapping("/editar")
-    public String editarTipoSala(@RequestBody TipoSala tipoSala) {
-        return this.tipoSalaServiceImpl.editarTipoSala(tipoSala);
+    @PutMapping("/editar/{codigoTipoSala}")
+    public String editarTipoSala(@PathVariable int codigoTipoSala, @RequestBody TipoSala tipoSala) {
+        return this.tipoSalaServiceImpl.editarTipoSala(codigoTipoSala, tipoSala);
     }
 
     @DeleteMapping("/eliminar")

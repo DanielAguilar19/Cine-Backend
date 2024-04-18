@@ -19,6 +19,6 @@ public interface EventoService {
 
     public String eliminarEventosPorNombre(String titulo);
 
-    public Evento editarEvento(long codigoEvento);
+    public Evento editarEvento(long codigoEvento, Evento evento);
     
 }

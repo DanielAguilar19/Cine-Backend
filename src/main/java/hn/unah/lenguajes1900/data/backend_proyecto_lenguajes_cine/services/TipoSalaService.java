@@ -6,7 +6,7 @@ public interface TipoSalaService {
     
     public TipoSala crearTipoSala(TipoSala tipoSala);
 
-    public String editarTipoSala(TipoSala TipoSala);
+    public String editarTipoSala(long codigoTipoSala, TipoSala TipoSala);
 
     public TipoSala obtenerTipoSalaPorNombre(String nombreTipoSala);
 

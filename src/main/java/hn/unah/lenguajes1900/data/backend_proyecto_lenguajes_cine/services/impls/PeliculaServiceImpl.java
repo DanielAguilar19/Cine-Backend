@@ -23,13 +23,11 @@ public class PeliculaServiceImpl implements PeliculaService{
 
     @Override
     public List<Pelicula> obtenerPeliculas() {
-        // TODO Auto-generated method stub
         return (List<Pelicula>) this.peliculaRepository.findAll();
     }
 
     @Transactional
     public String eliminarPeliculaPorNombre(String titulo) {
-        // TODO Auto-generated method stub
         if (this.peliculaRepository.existsByTitulo(titulo)) {
             this.peliculaRepository.deleteByTitulo(titulo);
             return "Película eliminada";
