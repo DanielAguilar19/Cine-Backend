@@ -19,8 +19,8 @@ public class SalaController {
     private SalaServiceImpl salaServiceImpl;
 
     @PostMapping("/crear")
-    public Sala crearSala(@RequestBody Sala sala) {
-        return this.salaServiceImpl.crearSala(sala);
+    public Sala crearSala(@RequestParam String nombreTipoSala) {
+        return this.salaServiceImpl.crearSala(nombreTipoSala);
     }
 
     @DeleteMapping("/eliminar")

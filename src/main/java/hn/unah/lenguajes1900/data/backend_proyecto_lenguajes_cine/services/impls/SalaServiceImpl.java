@@ -1,8 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +23,13 @@ public class SalaServiceImpl implements SalaService{
     private TipoSalaServiceImpl tipoSalaServiceImpl;
 
     @Override
-    public Sala crearSala(Sala sala) {
-        if(sala.getTipoSala().getDescripcion().matches("(vip|normal)")){
+    public Sala crearSala(String nombreTipoSala) {
+        if(nombreTipoSala.matches("(vip|normal)")){ 
 
-            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(sala.getTipoSala().getDescripcion());
+            TipoSala tipoSala = this.tipoSalaServiceImpl.obtenerTipoSalaPorNombre(nombreTipoSala);
 
             if(tipoSala != null){
+                Sala sala = new Sala();
                 sala.setTipoSala(tipoSala);
                 Sala saladb = this.salaRepository.save(sala);
                 String[] filaArray = {"A","B","C","D","E","F","G","H","I"};

@@ -98,9 +98,9 @@ public class TipoSalaServiceImpl implements TipoSalaService{
                         }
                     }
                 this.tipoSalaRepository.deleteById(tipoSala.getCodigoTipoSala());
+                return "El tipo de sala se ha eliminado correctamente";
                 }
             }
-        return "El tipo de sala se ha eliminado correctamente";
         }
     return "Ha ocurrido un error al eliminar el tipo de sala.";
     }
