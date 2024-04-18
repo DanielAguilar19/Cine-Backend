@@ -26,5 +26,4 @@ public class Pelicula {
 
     private LocalTime duracion;
 
-
 }
