@@ -25,6 +25,8 @@ public class ClienteController {
     private ClienteServiceImpl clienteServiceImpl;
 
     @PostMapping("/crear")
+    //@PostMapping(path = "/crear", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    //@PostMapping(value = "/crear", consumes = {"application/json"}) 
     public Cliente crearCliente(@RequestBody Cliente cliente) {
 
         return this.clienteServiceImpl.crearCliente(cliente);

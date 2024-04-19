@@ -11,7 +11,6 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.A
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.SalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.AsientoService;
 
-// Aun no se han probado estos métodos
 @Service
 public class AsientoServiceImpl implements AsientoService{
 

@@ -21,15 +21,12 @@ public class ClienteServiceImpl implements ClienteService{
     public Cliente crearCliente(Cliente cliente) {
         Validation validator = new Validation();
 
-        if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono())){
+        if(validator.validarNombre(cliente.getNombreCompleto()) && 
+        validator.validarTelefono(cliente.getTelefono()) && validator.validarCorreo(cliente.getCorreo())){
 
+            cliente.setClienteFrecuente(0);
             return this.clienteRepository.save(cliente);
         }
-        return null;
-    }
-
-    @Override
-    public Cliente obtenerClientePorUsuario(Cliente cliente) {
         return null;
     }
 
@@ -58,10 +55,10 @@ public class ClienteServiceImpl implements ClienteService{
         if(null != clienteActualizar){
             
             Validation validator = new Validation();
-            if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono()) && validator.validarCorreo(cliente.getCorreo())){
+            if(validator.validarNombre(cliente.getNombreCompleto()) && 
+            validator.validarTelefono(cliente.getTelefono()) && validator.validarCorreo(cliente.getCorreo())){
 
                 clienteActualizar.setNombreCompleto(cliente.getNombreCompleto());
-                clienteActualizar.setClienteFrecuente(cliente.getClienteFrecuente());
                 clienteActualizar.setFechaNacimiento(cliente.getFechaNacimiento());
                 clienteActualizar.setCorreo(cliente.getCorreo());
                 clienteActualizar.setContrasenia(cliente.getContrasenia());

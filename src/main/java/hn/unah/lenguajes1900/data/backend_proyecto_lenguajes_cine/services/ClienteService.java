@@ -9,8 +9,6 @@ public interface ClienteService {
 
     public Cliente crearCliente(Cliente cliente);
 
-    public Cliente obtenerClientePorUsuario(Cliente cliente);
-
     public List<Cliente> obtenerClientes();
 
     public Cliente editarCliente(long codigoCliente , Cliente cliente);

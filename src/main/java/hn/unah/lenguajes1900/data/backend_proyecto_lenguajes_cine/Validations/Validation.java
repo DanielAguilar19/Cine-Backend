@@ -1,7 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.Validations;
 
-import java.util.regex.Pattern;
-
 public class Validation {
     
     public static final int N_ASIENTOS_FILA = 10;
@@ -12,14 +10,23 @@ public class Validation {
     public static final String CORREO_CLIENTE_REGEX = "[A-Za-z0-9._]+@[A-Za-z0-9]+\\.[A-Z|a-z]{2,}";
 
     public boolean validarNombre(String nombre){
-        return Pattern.matches(NOMBRE_CLIENTE_REGEX, nombre);
+        if(nombre.trim().matches("[A-Za-záéíóúäëïöü]+\\s?")){
+            return true;
+        }
+        return false;
     }
 
     public boolean validarTelefono(String telefono){
-        return Pattern.matches(TELEFONO_CLIENTE_REGEX, telefono);
+        if(telefono.trim().matches(TELEFONO_CLIENTE_REGEX)){
+            return true;
+        }
+        return false;
     }
 
     public boolean validarCorreo(String correo){
-        return Pattern.matches(CORREO_CLIENTE_REGEX, correo);
+        if(correo.trim().matches(CORREO_CLIENTE_REGEX)){
+            return true;
+        }
+        return false;
     }
 }
