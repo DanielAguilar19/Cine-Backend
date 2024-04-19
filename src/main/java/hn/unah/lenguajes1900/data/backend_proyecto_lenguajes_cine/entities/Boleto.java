@@ -13,7 +13,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -32,6 +34,8 @@ public class Boleto {
     @JoinColumn(name = "codigoevento", referencedColumnName = "codigoevento")
     private Evento evento;
 
+    @JsonIgnore
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "codigoasiento", referencedColumnName = "codigoasiento")
     private Asiento asiento;

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Boleto;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Evento;
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Sala;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.AsientoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.BoletoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.EventoRepository;
@@ -23,49 +22,41 @@ public class BoletoServiceImpl implements BoletoService{
     @Autowired
     private AsientoRepository asientoRepository;
 
-
     @Autowired
     private EventoRepository eventoRepository;
 
-    @Override
-    public Boleto crearBoleto(long idEvento){
-      try {
-        
-        int i = 0;
-        Evento evento = this.eventoRepository.findById(idEvento).get();
-        Sala sala = evento.getSala();
-        List<Asiento> asiento  = sala.getAsientos();
-        Asiento asientoActual = asiento.get(i);
-        Boleto boleto = new Boleto();
+  @Override
+  public Boleto crearBoleto(long idEvento, long idAsiento) {
 
-        while(asientoActual.getDisponible() == 1){
-            i++;
-            if(i > sala.getAsientos().size()){
-                break;
-            }
-            asientoActual=asiento.get(i);
+    if(this.eventoRepository.existsById(idEvento) && this.asientoRepository.existsById(idAsiento)){
 
+      Evento evento = this.eventoRepository.findById(idEvento).get();
+      Asiento asiento = this.asientoRepository.findById(idAsiento).get();
+
+      List<Boleto> boletos = (List<Boleto>) this.boletoRepository.findAll();
+      List<Boleto> boletosAsiento = asiento.getBoletos();
+
+      for (Boleto boletoI : boletos) {
+        if(boletoI.getEvento().getCodigoEvento() == evento.getCodigoEvento() && boletoI.getAsiento().getCodigoAsiento() == asiento.getCodigoAsiento()){
+          System.out.println("El asiento en este evento ya está ocupado");
+          return null;
         }
-    
-        boleto.setAsiento(asientoActual);
-
-        // Modificar la disponibilidad del asiento
-        asientoActual.setDisponible(0); // Cambiar disponibilidad a 0 (no disponible)
-        asientoRepository.save(asientoActual); // Guardar el cambio en la base de datos
-
-        boleto.setEvento(evento);
-
-        // Guardar el boleto en la base de datos
-        return this.boletoRepository.save(boleto);
-      } catch (Exception e) {
-        e.printStackTrace();
-        return null;
+        if(boletoI.getAsiento().getCodigoAsiento() == idAsiento){
+          boletosAsiento.add(boletoI);
+        }
       }
-    }
 
-    @Override
-    public String eliminarBoleto(long codigoEvento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarBoleto'");
+        asiento.setBoletos(boletosAsiento);
+        this.asientoRepository.save(asiento);
+
+        Boleto boleto = new Boleto();
+        boleto.setEvento(evento);
+        boleto.setAsiento(this.asientoRepository.findById(idAsiento).get());
+
+        return this.boletoRepository.save(boleto);
     }
+    System.out.println("No existe el evento o el asiento.");
+    return null;
+  }
+
 }

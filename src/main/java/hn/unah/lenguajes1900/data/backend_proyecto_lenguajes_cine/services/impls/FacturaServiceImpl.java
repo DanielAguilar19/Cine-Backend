@@ -12,6 +12,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.F
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.FacturaService;
 
 
+// Falt arreglar esto
 @Service
 public class FacturaServiceImpl implements FacturaService {
 

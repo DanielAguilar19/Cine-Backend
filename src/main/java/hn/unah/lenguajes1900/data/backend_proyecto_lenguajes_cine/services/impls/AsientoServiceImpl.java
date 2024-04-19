@@ -22,6 +22,7 @@ public class AsientoServiceImpl implements AsientoService{
 
     @Override
     public Asiento crearAsiento(Asiento asiento) {
+        asiento.setDisponible(1);
         return this.asientoRepository.save(asiento);
     }
 

@@ -34,11 +34,11 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-
+// Falta arreglar esto
 @Override
 public DetalleFactura crearDetalleFactura(long codigoCliente, long codigoBoleto, int cantidadBoletos,
         String numeroTarjeta) {
-   
+
             Cliente  cliente = clienteRepository.findById(codigoCliente).get();
             if (cliente == null) {
                 return null; 
