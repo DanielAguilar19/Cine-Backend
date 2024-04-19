@@ -3,11 +3,12 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services;
 import java.time.LocalDate;
 import java.util.List;
 
+
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Evento;
 
 public interface EventoService {
 
-    public Evento crearEvento(Evento evento);
+    public Evento crearEvento(Evento evento, long codigopelicula, long codigosala);
 
     public List<Evento> obtenerEventos();
     

@@ -2,7 +2,8 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -26,15 +27,17 @@ public class Sala {
     @Column(name = "codigosala")
     private long codigoSala;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "codigotiposala", referencedColumnName = "codigotiposala")
     private TipoSala tipoSala;
 
-    @JsonBackReference
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
     private List<Asiento> asientos;
 
-    @OneToMany(mappedBy = "sala")
+    @JsonIgnore
+    @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
     private List<Evento> eventos;
     
 }

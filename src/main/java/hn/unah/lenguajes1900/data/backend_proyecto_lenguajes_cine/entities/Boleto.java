@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+
+
 @Entity
 @Table(name = "boletos")
 @Data
@@ -23,6 +25,7 @@ public class Boleto {
     @Column(name = "codigoboleto")
     private long codigoBoleto;
 
+    
     @ManyToOne
     @JoinColumn(name = "codigoevento", referencedColumnName = "codigoevento")
     private Evento evento;
