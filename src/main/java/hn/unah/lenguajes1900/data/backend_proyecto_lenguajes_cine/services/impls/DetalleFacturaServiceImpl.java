@@ -93,7 +93,7 @@ public DetalleFactura crearDetalleFactura(long codigoCliente, long codigoBoleto,
     
     
     DetalleFactura detalleFactura = new DetalleFactura();
-    detalleFactura.setBoleto(boleto);
+
     detalleFactura.setFactura(factura);
     detalleFactura.setCantidadBoletos(cantidadBoletos);
     detalleFactura.setSubtotal(subtotal);

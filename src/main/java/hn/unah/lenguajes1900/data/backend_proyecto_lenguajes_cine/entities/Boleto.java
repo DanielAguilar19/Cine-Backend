@@ -40,7 +40,10 @@ public class Boleto {
     @JoinColumn(name = "codigoasiento", referencedColumnName = "codigoasiento")
     private Asiento asiento;
 
-    @OneToMany(mappedBy = "boleto")
-    private List<DetalleFactura> detallefactura;
+
+    @ManyToOne
+    @JoinColumn(name = "codigodetallefactura", referencedColumnName = "codigodetallefactura")
+    private DetalleFactura detallefactura;
+
 
 }
