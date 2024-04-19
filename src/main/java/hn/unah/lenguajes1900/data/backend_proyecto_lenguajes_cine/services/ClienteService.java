@@ -12,7 +12,5 @@ public interface ClienteService {
     public List<Cliente> obtenerClientes();
 
     public Cliente editarCliente(long codigoCliente , Cliente cliente);
-
-    public String eliminarCliente(long codigoCliente);
     
 }

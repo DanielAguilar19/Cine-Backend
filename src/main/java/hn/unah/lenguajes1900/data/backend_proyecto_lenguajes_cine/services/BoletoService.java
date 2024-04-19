@@ -4,7 +4,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Bolet
 
 public interface BoletoService {
     
-    public Boleto crearBoleto(Boleto boleto);
+    public Boleto crearBoleto(long idEvento);
 
     public String eliminarBoleto(long codigoEvento);
 }

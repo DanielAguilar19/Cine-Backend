@@ -10,7 +10,9 @@ public interface PeliculaRepository extends CrudRepository<Pelicula, Long>{
 
     public String deleteByTitulo(String titulo);
 
-    
     boolean existsByTitulo(String titulo);
+
+    public Pelicula findByTitulo(String titulo);
+
     
 }

@@ -16,8 +16,12 @@ public class PeliculaServiceImpl implements PeliculaService{
     @Autowired
     private PeliculaRepository peliculaRepository;
 
+    @Autowired
+    private EventoServiceImpl eventoServiceImpl;
+
     @Override
     public Pelicula crearPelicula(Pelicula pelicula) {
+        pelicula.setDisponible(1);
         return this.peliculaRepository.save(pelicula);
     }
 
@@ -29,7 +33,12 @@ public class PeliculaServiceImpl implements PeliculaService{
     @Transactional
     public String eliminarPeliculaPorNombre(String titulo) {
         if (this.peliculaRepository.existsByTitulo(titulo)) {
-            this.peliculaRepository.deleteByTitulo(titulo);
+
+            Pelicula pelicula = this.peliculaRepository.findByTitulo(titulo);
+            pelicula.setDisponible(0);
+            this.eventoServiceImpl.eliminarEventosPorNombre(titulo);
+            this.peliculaRepository.save(pelicula);
+            
             return "Película eliminada";
         } else {
             return "No existe la película";

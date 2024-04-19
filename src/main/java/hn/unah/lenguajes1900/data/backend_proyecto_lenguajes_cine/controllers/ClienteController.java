@@ -1,7 +1,6 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Cliente;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls.ClienteServiceImpl;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,8 +25,6 @@ public class ClienteController {
     private ClienteServiceImpl clienteServiceImpl;
 
     @PostMapping("/crear")
-    //@PostMapping(path = "/crear", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    //@PostMapping(value = "/crear", consumes = {"application/json"}) 
     public Cliente crearCliente(@RequestBody Cliente cliente) {
 
         return this.clienteServiceImpl.crearCliente(cliente);
@@ -37,11 +35,6 @@ public class ClienteController {
         return this.clienteServiceImpl.obtenerClientes();
     }
     
-    @DeleteMapping("/eliminar")
-    public String eliminarCliente(@RequestParam int codigoCliente) {
-        return this.clienteServiceImpl.eliminarCliente(codigoCliente);
-    }
-
     @PutMapping("/editar/{codigoCliente}")
     public Cliente editarCliente(@PathVariable long codigoCliente, @RequestBody Cliente cliente) {
         return this.clienteServiceImpl.editarCliente(codigoCliente, cliente);

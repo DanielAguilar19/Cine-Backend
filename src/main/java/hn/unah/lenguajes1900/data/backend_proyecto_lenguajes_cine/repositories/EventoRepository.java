@@ -7,5 +7,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Event
 
 @Repository
 public interface EventoRepository extends CrudRepository<Evento, Long>{
+
+    
     
 }
