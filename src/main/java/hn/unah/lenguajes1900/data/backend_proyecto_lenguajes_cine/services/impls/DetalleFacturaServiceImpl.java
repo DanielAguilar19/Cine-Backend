@@ -41,30 +41,30 @@ public DetalleFactura crearDetalleFactura(long codigoCliente, long codigoBoleto,
    
             Cliente  cliente = clienteRepository.findById(codigoCliente).get();
             if (cliente == null) {
-                return null; // Manejo del caso en que no se encuentre el cliente
+                return null; 
             }
     
             Boleto boleto = boletoRepository.findById(codigoBoleto).get();
     
             if (boleto == null) {
-                return null; // Manejo del caso en que no se encuentre el boleto
+                return null; 
             }
         
             Asiento asiento = boleto.getAsiento();
             if (asiento == null) {
-                return null; // Manejo del caso en que no se encuentre el asiento
+                return null; 
             }
         
-            // Obtener la sala asociada al asiento
+        
             Sala sala = asiento.getSala();
             if (sala == null) {
-                return null; // Manejo del caso en que no se encuentre la sala
+                return null; 
             }
         
-            // Obtener el tipo de sala asociado a la sala
+        
             TipoSala tipoSala = sala.getTipoSala();
             if (tipoSala == null) {
-                return null; // Manejo del caso en que no se encuentre el tipo de sala
+                return null; 
             }
     
             double precioSala = tipoSala.getPrecio();
@@ -72,7 +72,7 @@ public DetalleFactura crearDetalleFactura(long codigoCliente, long codigoBoleto,
     
             double descuento = 0.0;
         if (cantidadBoletos >= 5) {
-        // Si se compran 5 o más boletos, aplicar un descuento del 10%
+        
         descuento = subtotal * 0.10;
     }
     
@@ -80,25 +80,25 @@ public DetalleFactura crearDetalleFactura(long codigoCliente, long codigoBoleto,
     
     double totalConDescuento = subtotal - descuento;
     
-    // Crear una nueva factura
+    
     Factura factura = new Factura();
     factura.setCliente(cliente);
-    factura.setNumeroTarjeta(numeroTarjeta); // Establecer el número de tarjeta proporcionado
-    factura.setFechaCompra(LocalDate.now()); // Establecer la fecha actual
-    factura.setDescuento(descuento); // Establecer el descuento aplicado
-    factura.setTotalCompra(totalConDescuento); // Establecer el total con descuento como total de compra
+    factura.setNumeroTarjeta(numeroTarjeta); 
+    factura.setFechaCompra(LocalDate.now()); 
+    factura.setDescuento(descuento); 
+    factura.setTotalCompra(totalConDescuento); 
     
-    // Guardar la factura en la base de datos
+
     factura = facturaRepository.save(factura);
     
-    // Crear un nuevo detalle de factura
+    
     DetalleFactura detalleFactura = new DetalleFactura();
     detalleFactura.setBoleto(boleto);
     detalleFactura.setFactura(factura);
     detalleFactura.setCantidadBoletos(cantidadBoletos);
     detalleFactura.setSubtotal(subtotal);
     
-    // Guardar el detalle de factura en la base de datos
+
     return detalleFacturaRepository.save(detalleFactura);
         }
         

@@ -13,17 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@RequestMapping("/api/Boleto")
+@RequestMapping("/api/boleto")
 public class BoletoController {
     
-  
-
     @Autowired
     private BoletoServiceImpl boletoServiceImpl;
 
     @PostMapping("/crear")
     public Boleto crearBoleto(@RequestParam long idEvento) {
-       
         
         return this.boletoServiceImpl.crearBoleto(idEvento);
     }

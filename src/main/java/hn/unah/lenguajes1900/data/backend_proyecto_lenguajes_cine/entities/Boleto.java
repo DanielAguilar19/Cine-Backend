@@ -13,6 +13,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -25,7 +27,7 @@ public class Boleto {
     @Column(name = "codigoboleto")
     private long codigoBoleto;
 
-    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "codigoevento", referencedColumnName = "codigoevento")
     private Evento evento;

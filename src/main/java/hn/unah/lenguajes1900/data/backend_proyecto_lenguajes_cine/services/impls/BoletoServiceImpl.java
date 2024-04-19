@@ -24,9 +24,8 @@ public class BoletoServiceImpl implements BoletoService{
     private AsientoRepository asientoRepository;
 
 
-     @Autowired
-     private EventoRepository eventoRepository;
-   
+    @Autowired
+    private EventoRepository eventoRepository;
 
     @Override
     public Boleto crearBoleto(long idEvento){
