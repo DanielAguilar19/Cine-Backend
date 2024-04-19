@@ -11,6 +11,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Clien
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.ClienteRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.ClienteService;
 
+
 @Service
 public class ClienteServiceImpl implements ClienteService{
 
@@ -21,17 +22,16 @@ public class ClienteServiceImpl implements ClienteService{
     public Cliente crearCliente(Cliente cliente) {
         Validation validator = new Validation();
 
-        if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono())){
+        if(validator.validarNombre(cliente.getNombreCompleto()) && validator.validarTelefono(cliente.getTelefono()) && validator.validarCorreo(cliente.getCorreo())){
 
+        
+            cliente.setClienteFrecuente(0);
             return this.clienteRepository.save(cliente);
         }
         return null;
     }
 
-    @Override
-    public Cliente obtenerClientePorUsuario(Cliente cliente) {
-        return null;
-    }
+
 
     @Override
     public List<Cliente> obtenerClientes() {

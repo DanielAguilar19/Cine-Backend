@@ -14,6 +14,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "clientes")
 @Data
@@ -38,7 +40,7 @@ public class Cliente {
     private String correo; 
 
     private String contrasenia; 
-
+     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Factura> factura;
     
