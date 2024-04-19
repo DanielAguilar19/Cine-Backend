@@ -27,7 +27,7 @@ public class TipoSalaController {
     }
 
     @PutMapping("/editar/{codigoTipoSala}")
-    public String editarTipoSala(@PathVariable int codigoTipoSala, @RequestBody TipoSala tipoSala) {
+    public String editarTipoSala(@PathVariable long codigoTipoSala, @RequestBody TipoSala tipoSala) {
         return this.tipoSalaServiceImpl.editarTipoSala(codigoTipoSala, tipoSala);
     }
 

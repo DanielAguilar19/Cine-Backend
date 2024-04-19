@@ -20,7 +20,6 @@ public class BoletoServiceImpl implements BoletoService{
     @Autowired
     private BoletoRepository boletoRepository;
 
-
     @Autowired
     private AsientoRepository asientoRepository;
 

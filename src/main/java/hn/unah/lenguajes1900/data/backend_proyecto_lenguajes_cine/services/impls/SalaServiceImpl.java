@@ -43,7 +43,6 @@ public class SalaServiceImpl implements SalaService{
                             asiento.setSala(saladb);
                             asiento.setDisponible(0);
                             asiento.setNumeroAsiento(String.format("%s", fila+(j+1)));
-                            System.out.println(asiento.getNumeroAsiento());
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
                     }

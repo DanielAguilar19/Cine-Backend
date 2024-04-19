@@ -29,9 +29,7 @@ public class Pelicula {
 
     private LocalTime duracion;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pelicula",cascade = CascadeType.ALL)
-    private List<Evento> evento;
+    
 
 
 }
