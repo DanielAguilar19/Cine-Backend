@@ -118,8 +118,7 @@ public String eliminarEventoPorId(long codigoEvento) {
             List<Evento> eventosFiltrados = new ArrayList<>();
 
             for (Evento evento : eventos) {
-                
-                if(evento.getFechaEvento().isAfter(fechaInicio) && evento.getFechaEvento().isBefore(fechaFinal)){
+                if(evento.getFechaEvento().isAfter(fechaInicio) && evento.getFechaEvento().isBefore(fechaFinal) || evento.getFechaEvento().isEqual(fechaInicio)){
                     
                     eventosFiltrados.add(evento);
                 }

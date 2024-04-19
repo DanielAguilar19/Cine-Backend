@@ -40,7 +40,6 @@ public class ClienteServiceImpl implements ClienteService{
         return (List<Cliente>)this.clienteRepository.findAll();
     }
 
-    //Posible modificación o eliminación de este método.
     @Override
     public Cliente editarCliente(long codigoCliente, Cliente cliente) {
 

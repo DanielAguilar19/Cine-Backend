@@ -46,17 +46,17 @@ public class EventoController {
     }
 
     @DeleteMapping("/eliminarPorId")
-    public String eliminarEventoPorId(long codigoEvento) {
+    public String eliminarEventoPorId(@RequestParam long codigoEvento) {
         return this.eventoServiceImpl.eliminarEventoPorId(codigoEvento);
     }
 
     @DeleteMapping("/eliminarPorNombre")
-    public String eliminarEventosPorNombre(String titulo) {
+    public String eliminarEventosPorNombre(@RequestParam String titulo) {
         return this.eventoServiceImpl.eliminarEventosPorNombre(titulo);
     }
 
     @PutMapping("/editar")
-    public Evento editarEvento(long codigoEvento, Evento evento) {
+    public Evento editarEvento(@RequestParam long codigoEvento, @RequestBody Evento evento) {
         return this.eventoServiceImpl.editarEvento(codigoEvento, evento);
     }
     
