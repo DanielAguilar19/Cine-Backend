@@ -21,6 +21,17 @@ public class PeliculaServiceImpl implements PeliculaService{
 
     @Override
     public Pelicula crearPelicula(Pelicula pelicula) {
+        List<Pelicula> peliculas = (List<Pelicula>) this.peliculaRepository.findAll();
+
+        for (Pelicula pelicula2 : peliculas) {
+            if(pelicula2.getTitulo().equals(pelicula.getTitulo())){
+                
+                System.out.println("La película ya existe en la base de datos.");
+                return null;
+            }
+            
+        }
+
         pelicula.setDisponible(1);
         return this.peliculaRepository.save(pelicula);
     }
@@ -44,5 +55,7 @@ public class PeliculaServiceImpl implements PeliculaService{
             return "No existe la película";
         }
     }
+
+
     
 }
