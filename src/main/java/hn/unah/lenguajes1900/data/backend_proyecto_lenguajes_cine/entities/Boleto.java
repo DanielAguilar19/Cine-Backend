@@ -37,6 +37,7 @@ public class Boleto {
     private Asiento asiento;
 
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "codigodetallefactura", referencedColumnName = "codigodetallefactura")
     private DetalleFactura detallefactura;
