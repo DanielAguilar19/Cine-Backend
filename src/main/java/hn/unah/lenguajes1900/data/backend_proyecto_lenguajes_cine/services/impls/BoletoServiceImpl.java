@@ -11,6 +11,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Detal
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Evento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.AsientoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.BoletoRepository;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.DetalleFacturaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.EventoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.BoletoService;
 
@@ -25,13 +26,18 @@ public class BoletoServiceImpl implements BoletoService{
 
     @Autowired
     private EventoRepository eventoRepository;
+    
+    @Autowired
+    private DetalleFacturaRepository detalleFacturaRepository;
+
 
 @Override
-public Boleto crearBoleto(long idEvento, long idAsiento) {
+public Boleto crearBoleto(long idEvento, long idAsiento, long codigoDetalleFactura) {
   if(this.eventoRepository.existsById(idEvento) && this.asientoRepository.existsById(idAsiento)){
 
     Evento evento = this.eventoRepository.findById(idEvento).get();
     Asiento asiento = this.asientoRepository.findById(idAsiento).get();
+    DetalleFactura detalleFactura = this.detalleFacturaRepository.findById(codigoDetalleFactura).get();
 
     List<Boleto> boletos = (List<Boleto>) this.boletoRepository.findAll();
     List<Boleto> boletosAsiento = asiento.getBoletos();
@@ -52,6 +58,7 @@ public Boleto crearBoleto(long idEvento, long idAsiento) {
       Boleto boleto = new Boleto();
       boleto.setEvento(evento);
       boleto.setAsiento(this.asientoRepository.findById(idAsiento).get());
+      boleto.setDetallefactura(detalleFactura);
 
       
 
@@ -62,6 +69,7 @@ public Boleto crearBoleto(long idEvento, long idAsiento) {
 }
 }
   
+
     
 
     
