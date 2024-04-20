@@ -76,19 +76,19 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
             double totalConDescuento = subtotal - descuento;
     
             Factura factura = new Factura();
-            
-            facturasCliente.add(factura);
-            cliente.setFactura(facturasCliente);
 
-            factura.setCliente(cliente);
+            factura.setCliente(this.clienteRepository.findById(cliente.getCodigoCliente()).get());
             factura.setNumeroTarjeta(numeroTarjeta); 
             factura.setFechaCompra(LocalDate.now()); 
             factura.setDescuento(descuento); 
             factura.setTotalCompra(totalConDescuento); 
+
+            facturasCliente.add(factura);
+            cliente.setFactura(facturasCliente);
+            this.clienteRepository.save(cliente);
                 
             factura = facturaRepository.save(factura);
     
-              
             DetalleFactura detalleFactura = new DetalleFactura();
 
             detalleFactura.setFactura(factura);
