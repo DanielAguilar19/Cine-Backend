@@ -32,14 +32,8 @@ public class DetalleFactura {
     @JoinColumn(name = "codigofactura", referencedColumnName = "codigofactura")
     private Factura factura; 
 
-<<<<<<< HEAD
-    @ManyToOne
-    @JoinColumn(name = "codigoboleto", referencedColumnName = "codigoboleto")
-    private List<Boleto> boletos;
-=======
     @OneToMany(mappedBy = "detallefactura")
      private List<Boleto> boleto;
->>>>>>> c58952404f62cf53bf19f2dbc1e4a9cb06ad3500
 
      private Double subtotal;
 
