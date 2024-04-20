@@ -13,11 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-
 
 @Entity
 @Table(name = "boletos")

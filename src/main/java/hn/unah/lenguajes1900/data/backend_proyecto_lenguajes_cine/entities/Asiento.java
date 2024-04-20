@@ -1,9 +1,6 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;

@@ -31,7 +31,7 @@ public class DetalleFactura {
 
     @ManyToOne
     @JoinColumn(name = "codigoboleto", referencedColumnName = "codigoboleto")
-    private Boleto boleto;
+    private List<Boleto> boletos;
 
     private Double subtotal;
 

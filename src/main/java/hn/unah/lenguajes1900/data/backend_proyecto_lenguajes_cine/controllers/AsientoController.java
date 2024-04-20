@@ -24,9 +24,11 @@ public class AsientoController {
         return this.asientoServiceImpl.findAllByCodigoSala(codigoSala);
     }
 
+    /*
     @DeleteMapping("/eliminar")
     public String eliminarAsientos(@RequestParam long codigoSala) {
         return this.asientoServiceImpl.eliminarAsientos(codigoSala);
     }
+    */
     
 }
