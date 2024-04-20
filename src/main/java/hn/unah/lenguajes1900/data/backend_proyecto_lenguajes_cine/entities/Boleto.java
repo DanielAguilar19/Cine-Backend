@@ -36,7 +36,6 @@ public class Boleto {
     @JoinColumn(name = "codigoasiento", referencedColumnName = "codigoasiento")
     private Asiento asiento;
 
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "codigodetallefactura", referencedColumnName = "codigodetallefactura")

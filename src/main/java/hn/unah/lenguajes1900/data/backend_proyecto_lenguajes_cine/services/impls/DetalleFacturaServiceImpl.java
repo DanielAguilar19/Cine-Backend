@@ -3,6 +3,7 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impl
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,17 +63,23 @@ public class DetalleFacturaServiceImpl implements DetalleFacturaService {
                 double precioSala = tipoSala.getPrecio();
 
                 double subtotal = precioSala * cantidadBoletos;
+                
+                List<Factura> facturasCliente = cliente.getFactura();
 
                 double descuento = 0.0;
-                if (cantidadBoletos >= 5) {
+                if (facturasCliente.size() >= 5) {
                 
+                cliente.setClienteFrecuente(1);
                 descuento = subtotal * 0.10;
             }
             
             double totalConDescuento = subtotal - descuento;
     
-    
             Factura factura = new Factura();
+            
+            facturasCliente.add(factura);
+            cliente.setFactura(facturasCliente);
+
             factura.setCliente(cliente);
             factura.setNumeroTarjeta(numeroTarjeta); 
             factura.setFechaCompra(LocalDate.now()); 
