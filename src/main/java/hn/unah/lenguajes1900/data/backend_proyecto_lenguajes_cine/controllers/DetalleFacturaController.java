@@ -23,11 +23,12 @@ public class DetalleFacturaController {
     private DetalleFacturaServiceImpl detalleFacturaServiceImpl;
 
     @PostMapping("/crear")
-    public DetalleFactura crearDetalleFactura(  @RequestParam long codigoFactura, @RequestParam long codigoEvento , @RequestParam int cantidadBoletos ) {
+    public DetalleFactura crearDetalleFactura(  @RequestParam long codigoCliente, @RequestParam long codigoEvento , @RequestParam int cantidadBoletos, @RequestParam String numeroTarjeta ) {
         
         
-        return this.detalleFacturaServiceImpl.crearDetalleFactura(codigoFactura, codigoEvento, cantidadBoletos);
+        return this.detalleFacturaServiceImpl.crearDetalleFactura(codigoCliente, codigoEvento, cantidadBoletos, numeroTarjeta);
     }
     
+
     
 }

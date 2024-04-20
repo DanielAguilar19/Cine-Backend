@@ -21,9 +21,9 @@ public class BoletoController {
     private BoletoServiceImpl boletoServiceImpl;
 
     @PostMapping("/crear")
-    public Boleto crearBoleto(@RequestParam long idEvento, @RequestParam long idAsiento) {
+    public Boleto crearBoleto(@RequestParam long idEvento, @RequestParam long idAsiento,  @RequestParam long codigoDetalleFactura) {
         
-        return this.boletoServiceImpl.crearBoleto(idEvento, idAsiento);
+        return this.boletoServiceImpl.crearBoleto(idEvento, idAsiento, codigoDetalleFactura);
     }
     
 }

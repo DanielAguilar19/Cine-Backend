@@ -7,7 +7,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Bolet
 
 public interface BoletoService {
 
-    public Boleto crearBoleto(long idEvento, long idAsiento);
+    public Boleto crearBoleto(long idEvento, long idAsiento , long codigoDetalleFactura);
 
     //public List<Boleto> obtenerPorFactura(long idFactura);
 
