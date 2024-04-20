@@ -4,6 +4,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Detal
 
 public interface DetalleFacturaService {
 
-    public DetalleFactura crearDetalleFactura( long codigoCliente ,long codigoBoleto ,  int cantidadBoletos, String numeroTarjeta);
-    
+    public DetalleFactura crearDetalleFactura(  long codigoFactura , long codigoEvento ,int cantidadBoletos );
+
+ 
 }

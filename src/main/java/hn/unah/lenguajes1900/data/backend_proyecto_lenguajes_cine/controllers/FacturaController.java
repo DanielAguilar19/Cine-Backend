@@ -9,7 +9,7 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -20,10 +20,10 @@ public class FacturaController {
     private FacturaServiceImpl facturaServiceImpl;
 
     @PostMapping("/crear")
-    public Factura crearFactura(@RequestBody Factura factura, @RequestParam long codigoCliente) {
+    public Factura crearFactura(@RequestParam long codigoCliente, @RequestParam String numeroTarjeta) {
         //TODO: process POST request
         
-        return this.facturaServiceImpl.crearFactura(factura, codigoCliente);
+        return this.facturaServiceImpl.crearFactura(codigoCliente, numeroTarjeta);
     }
     
     
