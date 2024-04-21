@@ -1,6 +1,7 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Cliente;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls.ClienteServiceImpl;
@@ -42,6 +43,16 @@ public class ClienteController {
     public Cliente editarCliente(@PathVariable long codigoCliente, @RequestBody Cliente cliente) {
         return this.clienteServiceImpl.editarCliente(codigoCliente, cliente);
 
+    }
+
+    @GetMapping("/obtenerPorId")
+    public Cliente obtenerClientePorId(@RequestParam long codigoCliente) {
+        return this.clienteServiceImpl.obtenerClientePorId(codigoCliente);
+    }
+
+    @GetMapping("/obtenerPorCorreo")
+    public Cliente obtenerClientePorCorreo(String correo, String contrasenia) {
+        return this.clienteServiceImpl.obtenerClientePorCorreo(correo, contrasenia);
     }
 
 }

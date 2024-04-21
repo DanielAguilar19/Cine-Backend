@@ -11,6 +11,10 @@ public interface ClienteService {
 
     public List<Cliente> obtenerClientes();
 
+    public Cliente obtenerClientePorId(long codigoCliente);
+
+    public Cliente obtenerClientePorCorreo(String correo, String contrasenia);
+
     public Cliente editarCliente(long codigoCliente , Cliente cliente);
     
 }

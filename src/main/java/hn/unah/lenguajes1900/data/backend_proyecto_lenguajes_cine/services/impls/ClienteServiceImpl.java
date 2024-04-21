@@ -40,6 +40,8 @@ public class ClienteServiceImpl implements ClienteService{
         return (List<Cliente>)this.clienteRepository.findAll();
     }
 
+    
+
     @Override
     public Cliente editarCliente(long codigoCliente, Cliente cliente) {
 
@@ -61,6 +63,38 @@ public class ClienteServiceImpl implements ClienteService{
             }
             return clienteActualizar;
         }
+        return null;
+    }
+
+
+    @Override
+    public Cliente obtenerClientePorId(long codigoCliente) {
+
+        if(this.clienteRepository.existsById(codigoCliente)){
+            return this.clienteRepository.findById(codigoCliente).get();
+        }
+        System.out.println("No existe ningún cliente con este ID");
+        return null;
+    }
+
+
+    @Override
+    public Cliente obtenerClientePorCorreo(String correo, String contrasenia) {
+
+        List<Cliente> clientes = (List<Cliente>) this.clienteRepository.findAll();
+
+        for (Cliente cliente : clientes) {
+
+            if(cliente.getCorreo().equals(correo)){
+
+                if(cliente.getContrasenia().equals(contrasenia)){
+
+                    return cliente;
+                }
+                System.out.println("La contraseña no es correcta.");
+            }
+        }
+        System.out.println("El correo o la contraseña son incorrectos.");
         return null;
     }
 }
