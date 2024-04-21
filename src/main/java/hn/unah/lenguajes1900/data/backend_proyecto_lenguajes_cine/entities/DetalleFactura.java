@@ -35,7 +35,7 @@ public class DetalleFactura {
     @OneToMany(mappedBy = "detallefactura")
     private List<Boleto> boleto;
 
-    private Double subtotal;
+    private double subtotal;
 
 
 }
