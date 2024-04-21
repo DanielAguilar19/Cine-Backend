@@ -15,7 +15,6 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.E
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.PeliculaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.SalaRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.EventoService;
-import jakarta.transaction.Transactional;
 
 @Service
 public class EventoServiceImpl implements EventoService{
@@ -29,21 +28,59 @@ public class EventoServiceImpl implements EventoService{
     @Autowired
     private SalaRepository salaRepository;
 
-    @Transactional
+    @Override
     public Evento crearEvento(Evento evento, long codigopelicula, long codigosala) {
-        
-        Optional<Pelicula> peliculaOptional = peliculaRepository.findById(codigopelicula);
-        Optional<Sala> salaOptional = salaRepository.findById(codigosala);
 
-        if (peliculaOptional.isPresent() && salaOptional.isPresent()){
-            Pelicula pelicula = peliculaOptional.get();
-            Sala sala = salaOptional.get();
-            evento.setDisponible(1);
+        if(this.salaRepository.existsById(codigosala) && this.peliculaRepository.existsById(codigopelicula)){
+
+            LocalDate fechaActual = LocalDate.now();
+
+            if(evento.getFechaEvento().isBefore(fechaActual)){
+                System.out.println("No puede agregar eventos con fechas anteriores.");
+                return null;
+            }
+
+            Pelicula pelicula = this.peliculaRepository.findById(codigopelicula).get();
+            Sala sala = this.salaRepository.findById(codigosala).get();
+
+            List<Evento> eventosSala = sala.getEventos();
+            eventosSala.add(evento);
+            sala.setEventos(eventosSala);
+
             evento.setPelicula(pelicula);
             evento.setSala(sala);
-    
+            this.salaRepository.save(sala);
+
+            List<Evento> eventos = (List<Evento>) this.eventoRepository.findAll();
+
+            for (Evento eventodb : eventos) {
+                
+                if(eventodb.getFechaEvento().equals(evento.getFechaEvento()) &&
+                eventodb.getHoraInicio().equals(evento.getHoraInicio()) &&
+                eventodb.getSala().getCodigoSala() ==  evento.getSala().getCodigoSala()){
+                    System.out.println("La sala se encuentra ocupada por otro evento en esta hora.");
+                    return null;
+                }
+                
+            }
+
+            LocalDate fechaProximamente = fechaActual.plusMonths(1);
+
+            if(evento.getFechaEvento().isAfter(fechaProximamente) || evento.getFechaEvento().isEqual(fechaProximamente)){
+                evento.setDisponible(3);
+            }
+            
+            if(evento.getFechaEvento().isAfter(fechaActual) && evento.getFechaEvento().isBefore(fechaProximamente)){
+                evento.setDisponible(2);
+            }
+
+            if(evento.getFechaEvento().isEqual(fechaActual)){
+                evento.setDisponible(1);
+            }
             return this.eventoRepository.save(evento);
+
         }
+        System.out.println("La sala o la película no existe en la base de datos.");
         return null; 
     }
     
@@ -110,6 +147,7 @@ public String eliminarEventoPorId(long codigoEvento) {
         return (List<Evento>) this.eventoRepository.findAll();
     }
 
+    /* 
     @Override
     public List<Evento> obtenerEventosPorFecha(LocalDate fechaInicio, LocalDate fechaFinal) {
         List<Evento> eventos = (List<Evento>) this.eventoRepository.findAll();
@@ -118,7 +156,8 @@ public String eliminarEventoPorId(long codigoEvento) {
             List<Evento> eventosFiltrados = new ArrayList<>();
 
             for (Evento evento : eventos) {
-                if(evento.getFechaEvento().isAfter(fechaInicio) && evento.getFechaEvento().isBefore(fechaFinal) || evento.getFechaEvento().isEqual(fechaInicio)){
+                if((evento.getFechaEvento().isAfter(fechaInicio) || evento.getFechaEvento().isEqual(fechaInicio))&& 
+                (evento.getFechaEvento().isBefore(fechaFinal) || evento.getFechaEvento().isEqual(fechaFinal))){
                     
                     eventosFiltrados.add(evento);
                 }
@@ -127,6 +166,7 @@ public String eliminarEventoPorId(long codigoEvento) {
         }
         return null;
     }
+    */
 
     @Override
     public List<Evento> obtenerEventosPorNombre(String titulo) {

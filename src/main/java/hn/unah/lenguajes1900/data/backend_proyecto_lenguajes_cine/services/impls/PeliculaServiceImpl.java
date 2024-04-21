@@ -29,7 +29,6 @@ public class PeliculaServiceImpl implements PeliculaService{
                 System.out.println("La película ya existe en la base de datos.");
                 return null;
             }
-            
         }
 
         pelicula.setDisponible(1);

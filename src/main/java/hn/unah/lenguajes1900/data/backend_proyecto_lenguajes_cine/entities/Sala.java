@@ -27,17 +27,16 @@ public class Sala {
     @Column(name = "codigosala")
     private long codigoSala;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "codigotiposala", referencedColumnName = "codigotiposala")
     private TipoSala tipoSala;
 
-    
     @JsonIgnore
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
     private List<Asiento> asientos;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sala")
     private List<Evento> eventos;
     
 }

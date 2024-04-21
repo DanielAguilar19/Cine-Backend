@@ -33,9 +33,9 @@ public class DetalleFactura {
     private Factura factura; 
 
     @OneToMany(mappedBy = "detallefactura")
-     private List<Boleto> boleto;
+    private List<Boleto> boleto;
 
-     private Double subtotal;
+    private Double subtotal;
 
 
 }

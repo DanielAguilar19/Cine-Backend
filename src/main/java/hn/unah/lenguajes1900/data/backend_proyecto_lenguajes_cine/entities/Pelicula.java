@@ -28,7 +28,8 @@ public class Pelicula {
 
     private int disponible;
 
+    private String descripcion;
 
-
+    private String imagen;
 
 }

@@ -12,7 +12,7 @@ public interface EventoService {
 
     public List<Evento> obtenerEventos();
     
-    public List<Evento> obtenerEventosPorFecha(LocalDate fechaInicio, LocalDate fechaFinal);
+    //public List<Evento> obtenerEventosPorFecha(LocalDate fechaInicio, LocalDate fechaFinal);
 
     public List<Evento> obtenerEventosPorNombre(String titulo);
 
