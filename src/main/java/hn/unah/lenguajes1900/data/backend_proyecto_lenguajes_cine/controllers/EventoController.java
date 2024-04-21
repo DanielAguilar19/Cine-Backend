@@ -35,11 +35,12 @@ public class EventoController {
         return this.eventoServiceImpl.obtenerEventos();
     }
 
+    /* 
     @GetMapping("/obtenerPorFecha")
     public List<Evento> obtenerEventosPorFecha(@RequestParam LocalDate fechaInicio, @RequestParam LocalDate fechaFinal) {
         return this.eventoServiceImpl.obtenerEventosPorFecha(fechaInicio, fechaFinal);
     }
-
+    */
     @GetMapping("/obtenerPorNombre")
     public List<Evento> obtenerEventosPorNombre(@RequestParam String titulo) {
         return this.eventoServiceImpl.obtenerEventosPorNombre(titulo);
