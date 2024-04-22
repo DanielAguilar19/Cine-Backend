@@ -8,7 +8,10 @@ import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Bolet
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls.BoletoServiceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -25,5 +28,12 @@ public class BoletoController {
         
         return this.boletoServiceImpl.crearBoleto(idEvento, idAsiento, codigoDetalleFactura);
     }
+
+    @GetMapping("/obtenerPorEvento")
+    public List<Boleto> obtenerPorIdEvento(long codigoEvento){
+
+        return this.boletoServiceImpl.obtenerPorIdEvento(codigoEvento);
+    }
+
     
 }

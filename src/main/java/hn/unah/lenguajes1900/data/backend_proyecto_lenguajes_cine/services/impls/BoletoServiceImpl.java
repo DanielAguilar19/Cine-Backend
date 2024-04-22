@@ -1,5 +1,6 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,12 +62,34 @@ public Boleto crearBoleto(long idEvento, long idAsiento, long codigoDetalleFactu
       boleto.setDetallefactura(detalleFactura);
 
       
-
       return this.boletoRepository.save(boleto);
   }
   System.out.println("No existe el evento o el asiento.");
   return null;
 }
+
+public List<Boleto> obtenerPorIdEvento(long codigoEvento){
+
+  if(this.eventoRepository.existsById(codigoEvento)){
+
+    List<Boleto> boletosEvento = new ArrayList<>();
+    List<Boleto> boletosDB = (List<Boleto>) this.boletoRepository.findAll();
+
+    for (Boleto boleto : boletosDB) {
+      
+      if(boleto.getEvento().getCodigoEvento() == codigoEvento){
+
+        boletosEvento.add(boleto);
+      }
+      
+    }
+
+    return boletosEvento;
+  }
+  System.out.println("El evento no existe en la base de datos.");
+  return null;
+}
+
 }
   
 
