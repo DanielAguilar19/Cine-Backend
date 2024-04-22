@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "boletos")
@@ -28,8 +29,8 @@ public class Boleto {
     @JoinColumn(name = "codigoevento", referencedColumnName = "codigoevento")
     private Evento evento;
 
-    @JsonIgnore
-    //@JsonManagedReference
+    // @JsonIgnore
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "codigoasiento", referencedColumnName = "codigoasiento")
     private Asiento asiento;
