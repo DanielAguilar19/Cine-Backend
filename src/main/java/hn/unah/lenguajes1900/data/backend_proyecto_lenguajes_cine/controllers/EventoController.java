@@ -1,6 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
