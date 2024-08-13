@@ -97,7 +97,7 @@ public String eliminarEventoPorId(long codigoEvento) {
             evento.setDisponible(0);
             this.eventoRepository.save(evento);
         }
-        //this.eventoRepository.deleteById(codigoEvento);
+        this.eventoRepository.deleteById(codigoEvento);
         return "El evento ha sido eliminado";
     }
     return "Ocurrió un error al eliminar el evento";
@@ -134,7 +134,7 @@ public String eliminarEventoPorId(long codigoEvento) {
                     
                     evento.setDisponible(0);
                     this.eventoRepository.save(evento);
-                    //this.eventoRepository.deleteById(evento.getCodigoEvento());
+                    this.eventoRepository.deleteById(evento.getCodigoEvento());
                 }
             }
             return "Los eventos han sido eliminados";
