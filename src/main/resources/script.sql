@@ -84,5 +84,16 @@ CREATE TABLE Boleto (
     FOREIGN KEY (codigoDetalleFactura) REFERENCES DetalleFactura(codigoDetalleFactura)
 );
 
+-- Nueva tabla para gestionar la disponibilidad de los asientos por función
+CREATE TABLE AsientoFuncion (
+    codigoAsiento BIGINT,
+    codigoFuncion BIGINT,
+    disponible BOOLEAN NOT NULL DEFAULT TRUE,
+    PRIMARY KEY (codigoAsiento, codigoFuncion),
+    FOREIGN KEY (codigoAsiento) REFERENCES Asiento(codigoAsiento),
+    FOREIGN KEY (codigoFuncion) REFERENCES Funcion(codigoFuncion)
+);
+
+
 
  */
