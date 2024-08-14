@@ -85,13 +85,13 @@ CREATE TABLE Boleto (
 );
 
 -- Nueva tabla para gestionar la disponibilidad de los asientos por función
-CREATE TABLE AsientoFuncion (
+CREATE TABLE AsientoEvento (
     codigoAsiento BIGINT,
-    codigoFuncion BIGINT,
+    codigoEvento BIGINT,
     disponible BOOLEAN NOT NULL DEFAULT TRUE,
-    PRIMARY KEY (codigoAsiento, codigoFuncion),
+    PRIMARY KEY (codigoAsiento, codigoEvento),
     FOREIGN KEY (codigoAsiento) REFERENCES Asiento(codigoAsiento),
-    FOREIGN KEY (codigoFuncion) REFERENCES Funcion(codigoFuncion)
+    FOREIGN KEY (codigoEvento) REFERENCES Evento(codigoEvento)
 );
 
 
