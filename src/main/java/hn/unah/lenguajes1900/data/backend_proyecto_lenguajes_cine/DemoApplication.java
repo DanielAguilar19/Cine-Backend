@@ -18,7 +18,7 @@ public class DemoApplication {
     public OpenAPI customOpenAPI(){
         return new OpenAPI()
             .info(new Info()
-                .title("Proyecto Final - Lenguajes de Programación 1900")
+                .title("Proyecto Final Cine - Lenguajes de Programación")
                 .version("0.1.0")
                 .description("Documentación y consumo de APIs hecho con Swagger/Springdocs")
                 .termsOfService("http://swagger.io/terms/")

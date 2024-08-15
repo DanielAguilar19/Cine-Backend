@@ -3,11 +3,13 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impl
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.AsientoEvento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.AsientoEventoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.AsientoEventoService;
 
+@Service
 public class AsientoEventoImpl implements AsientoEventoService{
 
     @Autowired
