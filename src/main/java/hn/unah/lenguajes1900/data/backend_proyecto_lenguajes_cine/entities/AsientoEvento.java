@@ -1,6 +1,8 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
@@ -13,13 +15,10 @@ import lombok.Data;
 @Table(name = "asientoevento")
 public class AsientoEvento {
 
-    @Id
-    @Column(name = "codigoasiento")
-    private long codigoAsiento;
 
     @Id
-    @Column(name = "codigoevento")
-    private long codigoEvento;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long codigoAsientoEvento;
 
     @Column(name = "disponible", nullable = false)
     private boolean disponible;
