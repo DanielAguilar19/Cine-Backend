@@ -1,7 +1,4 @@
-/* 
-
-
-CREATE DATABASE cine;
+/* CREATE DATABASE cine;
 USE cine;
 
 CREATE TABLE TipoSala (
@@ -84,7 +81,6 @@ CREATE TABLE Boleto (
     FOREIGN KEY (codigoDetalleFactura) REFERENCES DetalleFactura(codigoDetalleFactura)
 );
 
--- Nueva tabla para gestionar la disponibilidad de los asientos por función
 CREATE TABLE AsientoEvento (
     codigoAsiento BIGINT,
     codigoEvento BIGINT,
@@ -94,6 +90,12 @@ CREATE TABLE AsientoEvento (
     FOREIGN KEY (codigoEvento) REFERENCES Evento(codigoEvento)
 );
 
-
-
+CREATE TABLE Administrador (
+    codigoAdmin BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombreCompleto VARCHAR(255) NOT NULL,
+    fechaNacimiento DATE,
+    telefono VARCHAR(20),
+    correo VARCHAR(255) UNIQUE,
+    contrasenia VARCHAR(255) NOT NULL
+);
  */

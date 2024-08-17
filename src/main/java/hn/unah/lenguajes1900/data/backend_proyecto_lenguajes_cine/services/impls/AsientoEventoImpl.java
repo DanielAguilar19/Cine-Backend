@@ -16,17 +16,13 @@ public class AsientoEventoImpl implements AsientoEventoService{
     private AsientoEventoRepository AsiEveRepo;
 
     @Override
-    public List<AsientoEvento> asientosLibresPorEvento(long codigoAsientoEvento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'asientosOcupadosPorEvento'");
-        /* SELECT codigoasiento from asientoevento WHERE disponible = TRUE and codigoevento = 1; */
+    public List<AsientoEvento> asientosLibresPorEvento(long codigoEvento) {
+        return AsiEveRepo.findByEventoCodigoEventoAndDisponible(codigoEvento, true);
     }
 
     @Override
-    public List<AsientoEvento> asientosOcupadosPorEvento(long codigoAsientoEvento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'asientosOcupadosPorEvento'");
-        /* SELECT codigoasiento from asientoevento WHERE disponible = TRUE and codigoevento = 1; */
+    public List<AsientoEvento> asientosOcupadosPorEvento(long codigoEvento) {
+        return AsiEveRepo.findByEventoCodigoEventoAndDisponible(codigoEvento, false);
     }
 
     @Override
