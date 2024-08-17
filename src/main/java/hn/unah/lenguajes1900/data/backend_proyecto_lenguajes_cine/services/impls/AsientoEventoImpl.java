@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.AsientoEvento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.repositories.AsientoEventoRepository;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.AsientoEventoService;
@@ -16,13 +17,13 @@ public class AsientoEventoImpl implements AsientoEventoService{
     private AsientoEventoRepository AsiEveRepo;
 
     @Override
-    public List<AsientoEvento> asientosLibresPorEvento(long codigoEvento) {
-        return AsiEveRepo.findByEventoCodigoEventoAndDisponible(codigoEvento, true);
+    public List<Asiento> obtenerAsientosLibresPorEvento(long codigoEvento) {
+        return AsiEveRepo.findAvailableAsientosByEvento(codigoEvento);
     }
 
     @Override
-    public List<AsientoEvento> asientosOcupadosPorEvento(long codigoEvento) {
-        return AsiEveRepo.findByEventoCodigoEventoAndDisponible(codigoEvento, false);
+    public List<Asiento> obtenerAsientosOcupadosPorEvento(long codigoEvento) {
+        return AsiEveRepo.findOccupiedAsientosByEvento(codigoEvento);
     }
 
     @Override

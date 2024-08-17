@@ -2,7 +2,7 @@ package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.AsientoEvento;
+import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls.AsientoEventoImpl;
 
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,13 +28,13 @@ public class AsientoEventoController {
     }
 
     @GetMapping("/libres/{eventoId}")
-    public List<AsientoEvento> getAsientosLibres(@PathVariable long eventoId) {
-        return asientoEventoImpl.asientosLibresPorEvento(eventoId);
+    public List<Asiento> getAsientosLibres(@PathVariable long eventoId) {
+        return asientoEventoImpl.obtenerAsientosLibresPorEvento(eventoId);
     }
 
     @GetMapping("/ocupados/{eventoId}")
-    public List<AsientoEvento> getAsientosOcupados(@PathVariable long eventoId) {
-        return asientoEventoImpl.asientosOcupadosPorEvento(eventoId);
+    public List<Asiento> getAsientosOcupados(@PathVariable long eventoId) {
+        return asientoEventoImpl.obtenerAsientosOcupadosPorEvento(eventoId);
     }
 }
 //http://localhost:8080/api/asientoevento/libres/{eventoId}
