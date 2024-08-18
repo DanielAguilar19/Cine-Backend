@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities.Asiento;
 import hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls.AsientoServiceImpl;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("api/asientos")
@@ -20,9 +23,9 @@ public class AsientoController {
     @Autowired
     private AsientoServiceImpl asientoServiceImpl;
 
-    @GetMapping("/obtener")
-    public List<Asiento> findAllByCodigoSala(@RequestParam long codigoSala) {
-        return this.asientoServiceImpl.findAllByCodigoSala(codigoSala);
+    @PostMapping("/crear")
+    public Asiento crearAsientos(@RequestBody Asiento nvAsiento) {
+        return this.asientoServiceImpl.crearAsiento(nvAsiento);
     }
 
     @DeleteMapping("/eliminar")
@@ -30,10 +33,9 @@ public class AsientoController {
         return this.asientoServiceImpl.eliminarAsientos(codigoSala);
     }
 
-    @GetMapping("/obtenerporevento/{codigoSala}")
+    @GetMapping("/obtenerporsala/{codigoSala}")
     public List<Asiento> obtenerAsientosporSala(@PathVariable Long codigoSala) {
         return this.asientoServiceImpl.findAllByCodigoSala(codigoSala);
     }
-    
-    
+       
 }

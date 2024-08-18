@@ -10,6 +10,7 @@ public interface AsientoService {
 
     public String eliminarAsientos(long codigoSala);
     
-    public List<Asiento> findAllByCodigoSala(long codigoSala);
+    public List<Asiento> findAllByCodigoSala(long codigoEvento);
+
 
 }

@@ -36,5 +36,11 @@ public class AsientoEventoImpl implements AsientoEventoService{
             return "Error";
     }
 
+    @Override
+    public boolean obtenerDisponibilidad(Long codigoAsiento) {
+        return this.AsiEveRepo.findDisponibilidadByCodigoAsiento(codigoAsiento); 
+        
+    }
+
     
 }

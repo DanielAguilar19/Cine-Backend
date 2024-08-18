@@ -27,6 +27,11 @@ public class AsientoEventoController {
         return this.asientoEventoImpl.cambiarDisponibilidadAiento(disponible, codigoAsientoEvento);
     }
 
+    @GetMapping("/obtener/disponibilidad/{codigoAsiento}")
+    public boolean obtenerDisponibilidad(@PathVariable Long codigoAsiento) {
+        return this.asientoEventoImpl.obtenerDisponibilidad(codigoAsiento);
+    }
+    
     @GetMapping("/libres/{eventoId}")
     public List<Asiento> getAsientosLibres(@PathVariable long eventoId) {
         return asientoEventoImpl.obtenerAsientosLibresPorEvento(eventoId);
@@ -37,4 +42,4 @@ public class AsientoEventoController {
         return asientoEventoImpl.obtenerAsientosOcupadosPorEvento(eventoId);
     }
 }
-//http://localhost:8080/api/asientoevento/libres/{eventoId}
+//http://localhost:8080/api/asientoevento/obtener/disponibilidad/

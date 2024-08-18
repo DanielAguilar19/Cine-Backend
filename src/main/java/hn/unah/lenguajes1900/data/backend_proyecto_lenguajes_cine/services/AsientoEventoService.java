@@ -15,5 +15,6 @@ public interface AsientoEventoService{
     
     public String cambiarDisponibilidadAiento(boolean disponible, long codigoAsientoEvento);
     
+    public boolean obtenerDisponibilidad(Long codigoAsiento);
 
 }

@@ -25,17 +25,6 @@ public class AsientoServiceImpl implements AsientoService{
     }
 
     @Override
-    public List<Asiento> findAllByCodigoSala(long codigoSala) {
-
-        if(this.salaRepository.existsById(codigoSala)){
-
-            return this.asientoRepository.findAllByCodigoSala(codigoSala);
-        }
-        return null;
-    }
-
-
-    @Override
     public String eliminarAsientos(long codigoSala) {
 
         if(this.salaRepository.existsById(codigoSala)){
@@ -45,11 +34,22 @@ public class AsientoServiceImpl implements AsientoService{
                 if(asiento.getSala().getCodigoSala() == codigoSala){
 
                     this.asientoRepository.delete(asiento);
-
+                    
                 }
             }
             return "Asientos eliminados.";
         }
         return "Ha ocurrido un problema con la eliminación de los asientos.";
     }
+
+    @Override
+    public List<Asiento> findAllByCodigoSala(long codigoEvento) {
+
+        if(this.salaRepository.existsById(codigoEvento)){
+
+            return this.asientoRepository.findAllByCodigoSala(codigoEvento);
+        }
+        return null;
+    }
+
 }
