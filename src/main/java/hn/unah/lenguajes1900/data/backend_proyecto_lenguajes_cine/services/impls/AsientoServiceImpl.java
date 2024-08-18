@@ -29,7 +29,7 @@ public class AsientoServiceImpl implements AsientoService{
 
         if(this.salaRepository.existsById(codigoSala)){
 
-            return this.asientoRepository.findAllByCodigoEvento(codigoSala);
+            return this.asientoRepository.findAllByCodigoSala(codigoSala);
         }
         return null;
     }
@@ -45,7 +45,7 @@ public class AsientoServiceImpl implements AsientoService{
                 if(asiento.getSala().getCodigoSala() == codigoSala){
 
                     this.asientoRepository.delete(asiento);
-                    
+
                 }
             }
             return "Asientos eliminados.";

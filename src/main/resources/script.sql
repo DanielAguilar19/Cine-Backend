@@ -1,4 +1,5 @@
-/* CREATE DATABASE cine;
+/* 
+CREATE DATABASE cine;
 USE cine;
 
 CREATE TABLE TipoSala (
@@ -98,4 +99,4 @@ CREATE TABLE Administrador (
     correo VARCHAR(255) UNIQUE,
     contrasenia VARCHAR(255) NOT NULL
 );
- */
+*/
