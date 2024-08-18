@@ -41,7 +41,6 @@ public class SalaServiceImpl implements SalaService{
                         for(int j=0; j< Validation.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
-                            asiento.setDisponible(0);
                             asiento.setNumeroAsiento(String.format("%s", fila+(j+1)));
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }
@@ -53,7 +52,6 @@ public class SalaServiceImpl implements SalaService{
                         for(int j=0; j< Validation.N_ASIENTOS_FILA; j++){
                             Asiento asiento = new Asiento();
                             asiento.setSala(saladb);
-                            asiento.setDisponible(0);
                             asiento.setNumeroAsiento(String.format("%s", fila+(j+1)));
                             this.asientoServiceImpl.crearAsiento(asiento);
                         }

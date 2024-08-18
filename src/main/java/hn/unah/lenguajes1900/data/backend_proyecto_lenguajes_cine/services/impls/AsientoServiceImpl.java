@@ -1,6 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.services.impls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ public class AsientoServiceImpl implements AsientoService{
 
     @Override
     public Asiento crearAsiento(Asiento asiento) {
-        asiento.setDisponible(1);
         return this.asientoRepository.save(asiento);
     }
 
@@ -30,17 +28,8 @@ public class AsientoServiceImpl implements AsientoService{
     public List<Asiento> findAllByCodigoSala(long codigoSala) {
 
         if(this.salaRepository.existsById(codigoSala)){
-            List<Asiento> asientosSala = new ArrayList<>();
-            List<Asiento> allAsientos = (List<Asiento>) this.asientoRepository.findAll();
 
-            for (Asiento asiento : allAsientos) {
-    
-                if(asiento.getSala().getCodigoSala() == codigoSala){
-                    asientosSala.add(asiento);
-                }
-            }
-    
-            return asientosSala;
+            return this.asientoRepository.findAllByCodigoEvento(codigoSala);
         }
         return null;
     }

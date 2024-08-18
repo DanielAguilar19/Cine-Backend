@@ -30,8 +30,6 @@ public class Asiento {
     @ManyToOne
     @JoinColumn(name = "codigosala", referencedColumnName = "codigosala")
     private Sala sala;
-    
-    private int disponible;
 
     @Column(name = "numeroasiento")
     private String numeroAsiento;
