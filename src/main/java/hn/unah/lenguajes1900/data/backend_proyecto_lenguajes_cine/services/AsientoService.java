@@ -8,9 +8,8 @@ public interface AsientoService {
     
     public Asiento crearAsiento(Asiento asiento);
 
-    public List<Asiento> findAllByCodigoSala(long codigoSala);
-
     public String eliminarAsientos(long codigoSala);
-
+    
+    public List<Asiento> findAllByCodigoSala(long codigoSala);
 
 }

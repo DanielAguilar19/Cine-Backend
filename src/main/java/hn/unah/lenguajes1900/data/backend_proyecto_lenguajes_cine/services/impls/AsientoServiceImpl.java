@@ -45,6 +45,7 @@ public class AsientoServiceImpl implements AsientoService{
                 if(asiento.getSala().getCodigoSala() == codigoSala){
 
                     this.asientoRepository.delete(asiento);
+                    
                 }
             }
             return "Asientos eliminados.";

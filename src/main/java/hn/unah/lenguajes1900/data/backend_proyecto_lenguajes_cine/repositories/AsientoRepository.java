@@ -18,6 +18,6 @@ public interface AsientoRepository extends CrudRepository<Asiento, Long>{
     "JOIN AsientoEvento ae ON a.codigoAsiento = ae.asiento.codigoAsiento " +
     "JOIN Evento e ON ae.evento.codigoEvento = e.codigoEvento " +
     "WHERE e.codigoEvento = :codigoEvento")
-    List<Asiento> findAllByCodigoEvento(@Param("codigoEvento") long codigoEvento);
+    List<Asiento> findAllByCodigoEvento(@Param("codigoSala") long codigoSala);
     
 }
