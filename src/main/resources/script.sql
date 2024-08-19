@@ -48,7 +48,6 @@ CREATE TABLE Cliente (
     codigoCliente BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombreCompleto VARCHAR(255) NOT NULL,
     clienteFrecuente BOOLEAN NOT NULL DEFAULT FALSE,
-    fechaNacimiento DATE,
     telefono VARCHAR(20),
     correo VARCHAR(255) UNIQUE,
     contrasenia VARCHAR(255) NOT NULL

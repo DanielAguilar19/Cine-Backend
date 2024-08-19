@@ -31,7 +31,6 @@ public class ClienteServiceImpl implements ClienteService {
 
         if (clienteActualizar != null) {
             clienteActualizar.setNombreCompleto(cliente.getNombreCompleto());
-            clienteActualizar.setFechaNacimiento(cliente.getFechaNacimiento());
             clienteActualizar.setCorreo(cliente.getCorreo());
             clienteActualizar.setContrasenia(cliente.getContrasenia());
             clienteActualizar.setTelefono(cliente.getTelefono());

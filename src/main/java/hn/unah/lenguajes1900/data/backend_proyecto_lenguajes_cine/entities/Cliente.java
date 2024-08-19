@@ -1,7 +1,5 @@
 package hn.unah.lenguajes1900.data.backend_proyecto_lenguajes_cine.entities;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,9 +27,6 @@ public class Cliente {
 
     @Column(name = "clientefrecuente")
     private int clienteFrecuente;
-
-    @Column(name = "fechanacimiento")
-    private LocalDate fechaNacimiento;
 
     private String telefono;
 
