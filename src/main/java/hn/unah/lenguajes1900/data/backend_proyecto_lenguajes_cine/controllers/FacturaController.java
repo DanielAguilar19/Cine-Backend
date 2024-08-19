@@ -21,8 +21,6 @@ public class FacturaController {
 
     @PostMapping("/crear")
     public Factura crearFactura(@RequestParam long codigoCliente, @RequestParam String numeroTarjeta) {
-        //TODO: process POST request
-        
         return this.facturaServiceImpl.crearFactura(codigoCliente, numeroTarjeta);
     }
     

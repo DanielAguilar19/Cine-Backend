@@ -25,6 +25,5 @@ public class SalaController {
     @DeleteMapping("/eliminar")
     public String eliminarSalaPorId(@RequestParam long codigoSala) {
         return this.salaServiceImpl.eliminarSalaPorId(codigoSala);
-    }
-    
+    }    
 }
