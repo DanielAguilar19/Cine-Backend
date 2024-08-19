@@ -51,7 +51,7 @@ public class ClienteController {
     }
 
     @GetMapping("/obtenerPorCorreo")
-    public Cliente obtenerClientePorCorreo(String correo, String contrasenia) {
+    public Cliente obtenerClientePorCorreo(@RequestParam String correo, @RequestParam String contrasenia) {
         return this.clienteServiceImpl.obtenerClientePorCorreo(correo, contrasenia);
     }
 
